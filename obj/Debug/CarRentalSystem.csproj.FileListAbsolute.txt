@@ -1,0 +1,17 @@
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\bin\Debug\CarRentalSystem.exe.config
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\bin\Debug\CarRentalSystem.exe
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\bin\Debug\CarRentalSystem.pdb
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.csproj.AssemblyReference.cache
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Properties.Resources.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Splash.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.csproj.GenerateResource.cache
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.csproj.CoreCompileInputs.cache
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.exe
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.pdb
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Login.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.MainForm.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.User.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Customer.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Car.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Rental.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Return.resources
