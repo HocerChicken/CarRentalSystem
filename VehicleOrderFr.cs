@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CarRentalSystem
 {
-    public partial class Rental : Form
+    public partial class VehicleOrderFr : Form
     {
 
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
@@ -19,7 +19,7 @@ namespace CarRentalSystem
         private SqlDataReader reader;
         private SqlCommandBuilder commandBuilder;
 
-        public Rental()
+        public VehicleOrderFr()
         {
             InitializeComponent();
         }

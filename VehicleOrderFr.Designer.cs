@@ -1,6 +1,6 @@
 ﻿namespace CarRentalSystem
 {
-    partial class Rental
+    partial class VehicleOrderFr
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbExit = new System.Windows.Forms.Label();
@@ -181,14 +181,14 @@
             // 
             // rentalDGV
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.rentalDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.rentalDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.rentalDGV.ColumnHeadersHeight = 29;
             this.rentalDGV.Location = new System.Drawing.Point(553, 257);
             this.rentalDGV.Name = "rentalDGV";
@@ -201,20 +201,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(63, 468);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 30);
+            this.label3.Size = new System.Drawing.Size(53, 20);
             this.label3.TabIndex = 36;
             this.label3.Text = "Name";
             // 
             // tbName
             // 
-            this.tbName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbName.Location = new System.Drawing.Point(217, 466);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(275, 38);
+            this.tbName.Size = new System.Drawing.Size(275, 30);
             this.tbName.TabIndex = 35;
             // 
             // label2
@@ -231,64 +231,64 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Red;
             this.label8.Location = new System.Drawing.Point(63, 391);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 30);
+            this.label8.Size = new System.Drawing.Size(64, 20);
             this.label8.TabIndex = 33;
             this.label8.Text = "CusId";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
             this.label6.Location = new System.Drawing.Point(63, 324);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 30);
+            this.label6.Size = new System.Drawing.Size(75, 20);
             this.label6.TabIndex = 32;
             this.label6.Text = "CarReg";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
             this.label4.Location = new System.Drawing.Point(63, 534);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 30);
+            this.label4.Size = new System.Drawing.Size(119, 20);
             this.label4.TabIndex = 43;
             this.label4.Text = "RentalDate";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(63, 604);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(173, 30);
+            this.label7.Size = new System.Drawing.Size(119, 20);
             this.label7.TabIndex = 45;
             this.label7.Text = "ReturnDate";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Red;
             this.label9.Location = new System.Drawing.Point(63, 256);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(109, 30);
+            this.label9.Size = new System.Drawing.Size(75, 20);
             this.label9.TabIndex = 47;
             this.label9.Text = "RentId";
             // 
             // tbRentId
             // 
-            this.tbRentId.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbRentId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRentId.Location = new System.Drawing.Point(217, 256);
             this.tbRentId.Name = "tbRentId";
-            this.tbRentId.Size = new System.Drawing.Size(275, 38);
+            this.tbRentId.Size = new System.Drawing.Size(275, 30);
             this.tbRentId.TabIndex = 46;
             // 
             // tbRentFee
@@ -302,11 +302,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("SimSun", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Red;
             this.label10.Location = new System.Drawing.Point(63, 666);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 30);
+            this.label10.Size = new System.Drawing.Size(53, 20);
             this.label10.TabIndex = 45;
             this.label10.Text = "Fees";
             // 
@@ -326,24 +326,24 @@
             // 
             // cbCarReg
             // 
-            this.cbCarReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbCarReg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCarReg.FormattingEnabled = true;
             this.cbCarReg.Location = new System.Drawing.Point(217, 317);
             this.cbCarReg.Name = "cbCarReg";
-            this.cbCarReg.Size = new System.Drawing.Size(275, 37);
+            this.cbCarReg.Size = new System.Drawing.Size(275, 28);
             this.cbCarReg.TabIndex = 50;
             // 
             // cBCusId
             // 
-            this.cBCusId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cBCusId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cBCusId.FormattingEnabled = true;
             this.cBCusId.Location = new System.Drawing.Point(217, 391);
             this.cBCusId.Name = "cBCusId";
-            this.cBCusId.Size = new System.Drawing.Size(275, 37);
+            this.cBCusId.Size = new System.Drawing.Size(275, 28);
             this.cBCusId.TabIndex = 51;
             this.cBCusId.SelectedValueChanged += new System.EventHandler(this.cBCusId_SelectedValueChanged);
             // 
-            // Rental
+            // VehicleOrderFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -371,7 +371,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Rental";
+            this.Name = "VehicleOrderFr";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rental";
             this.Load += new System.EventHandler(this.Rental_Load);

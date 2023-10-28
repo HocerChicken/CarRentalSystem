@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CarRentalSystem
 {
-    public partial class Login : Form
+    public partial class LoginFr : Form
     {
-        public Login()
+        public LoginFr()
         {
             InitializeComponent();
         }

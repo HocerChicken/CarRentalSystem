@@ -39,7 +39,7 @@
             this.btnRental = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnLogout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +74,7 @@
             this.btnCar.Name = "btnCar";
             this.btnCar.Size = new System.Drawing.Size(157, 48);
             this.btnCar.TabIndex = 14;
-            this.btnCar.Text = "CAR";
+            this.btnCar.Text = "CARS";
             this.btnCar.UseVisualStyleBackColor = false;
             this.btnCar.Click += new System.EventHandler(this.btnCar_Click);
             // 
@@ -128,11 +128,11 @@
             this.btnCustomer.BackColor = System.Drawing.Color.Red;
             this.btnCustomer.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCustomer.Location = new System.Drawing.Point(338, 164);
+            this.btnCustomer.Location = new System.Drawing.Point(326, 164);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Size = new System.Drawing.Size(157, 48);
             this.btnCustomer.TabIndex = 17;
-            this.btnCustomer.Text = "CUSTOMER";
+            this.btnCustomer.Text = "CUSTOMERS";
             this.btnCustomer.UseVisualStyleBackColor = false;
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
@@ -141,11 +141,11 @@
             this.btnRental.BackColor = System.Drawing.Color.Red;
             this.btnRental.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRental.ForeColor = System.Drawing.Color.White;
-            this.btnRental.Location = new System.Drawing.Point(516, 164);
+            this.btnRental.Location = new System.Drawing.Point(495, 164);
             this.btnRental.Name = "btnRental";
-            this.btnRental.Size = new System.Drawing.Size(157, 48);
+            this.btnRental.Size = new System.Drawing.Size(200, 48);
             this.btnRental.TabIndex = 18;
-            this.btnRental.Text = "RENTAL";
+            this.btnRental.Text = "VEHICLE ORDER";
             this.btnRental.UseVisualStyleBackColor = false;
             this.btnRental.Click += new System.EventHandler(this.btnRental_Click);
             // 
@@ -154,11 +154,11 @@
             this.btnReturn.BackColor = System.Drawing.Color.Red;
             this.btnReturn.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturn.ForeColor = System.Drawing.Color.White;
-            this.btnReturn.Location = new System.Drawing.Point(697, 164);
+            this.btnReturn.Location = new System.Drawing.Point(704, 164);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(157, 48);
             this.btnReturn.TabIndex = 19;
-            this.btnReturn.Text = "RETURN";
+            this.btnReturn.Text = "INVOICES";
             this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
@@ -171,28 +171,29 @@
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(157, 48);
             this.btnUser.TabIndex = 20;
-            this.btnUser.Text = "USER";
+            this.btnUser.Text = "USERS";
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // button6
+            // btnLogout
             // 
-            this.button6.BackColor = System.Drawing.Color.Red;
-            this.button6.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(509, 576);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(157, 48);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "Logout";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnLogout.BackColor = System.Drawing.Color.Red;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogout.ForeColor = System.Drawing.Color.White;
+            this.btnLogout.Location = new System.Drawing.Point(509, 576);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(157, 48);
+            this.btnLogout.TabIndex = 21;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1202, 673);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnRental);
@@ -224,7 +225,7 @@
         private System.Windows.Forms.Button btnRental;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Button btnUser;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbExit;
     }
 }

@@ -12,13 +12,14 @@ using System.Windows.Forms;
 
 namespace CarRentalSystem
 {
-    public partial class User : Form
+    public partial class UsersFr : Form
     {
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
+        private DataTable dt;
         private SqlCommandBuilder commandBuilder;
 
-        public User()
+        public UsersFr()
         {
             InitializeComponent();
         }
@@ -38,10 +39,9 @@ namespace CarRentalSystem
                     conn.Open();
                     adapter = new SqlDataAdapter(query, conn);
                     commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataSet = new DataSet();
-                    adapter.Fill(dataSet);
+                    adapter.Fill(dt);
 
-                    userDGV.DataSource = dataSet.Tables[0];
+                    userDGV.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -52,14 +52,16 @@ namespace CarRentalSystem
 
         private void resetTextBox()
         {
-            Id.Text = "";
-            Username.Text = "";
-            Userpassword.Text = "";
+            tbUserId.Text = String.Empty;
+            tbUsername.Text = String.Empty;
+            tbPassword.Text = String.Empty;
+            tbRole.Text = String.Empty;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Id.Text) || String.IsNullOrEmpty(Username.Text) || String.IsNullOrEmpty(Userpassword.Text))
+            if (String.IsNullOrEmpty(tbUserId.Text) || String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text)
+                || String.IsNullOrEmpty(tbRole.Text))
             {
                 MessageBox.Show("Missing Information");
             }
@@ -75,9 +77,9 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Id", Id.Text);
-                            cmd.Parameters.AddWithValue("@Username", Username.Text);
-                            cmd.Parameters.AddWithValue("@Userpassword", Userpassword.Text);
+                            cmd.Parameters.AddWithValue("@", tbUserId.Text);
+                            cmd.Parameters.AddWithValue("@Username", tbUsername.Text);
+                            cmd.Parameters.AddWithValue("@Userpassword", tbPassword.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -110,15 +112,15 @@ namespace CarRentalSystem
             }
             if (e.RowIndex >= 0)
             {
-                Id.Text = userDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Username.Text = userDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
-                Userpassword.Text = userDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
+                tbUserId.Text = userDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+                tbUsername.Text = userDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
+                tbPassword.Text = userDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Id.Text) || String.IsNullOrEmpty(Username.Text) || String.IsNullOrEmpty(Userpassword.Text))
+            if (String.IsNullOrEmpty(tbUserId.Text) || String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text))
             {
                 MessageBox.Show("Missing Information");
             }
@@ -134,9 +136,9 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Id", Id.Text);
-                            cmd.Parameters.AddWithValue("@Username", Username.Text);
-                            cmd.Parameters.AddWithValue("@Userpassword", Userpassword.Text);
+                            cmd.Parameters.AddWithValue("@Id", tbUserId.Text);
+                            cmd.Parameters.AddWithValue("@Username", tbUsername.Text);
+                            cmd.Parameters.AddWithValue("@Userpassword", tbPassword.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -161,13 +163,13 @@ namespace CarRentalSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(Id.Text))
+            if (String.IsNullOrEmpty(tbUserId.Text))
             {
                 MessageBox.Show("Missing ID Information");
             }
             else
             {
-                DialogResult result = MessageBox.Show($"Are you sure to delete user with ID: {Id.Text}", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
+                DialogResult result = MessageBox.Show($"Are you sure to delete user with ID: {tbUserId.Text}", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
                 if (result == DialogResult.Yes)
                 {
                     string query = "DELETE FROM USERS WHERE Id = @Id";
@@ -178,7 +180,7 @@ namespace CarRentalSystem
                             con.Open();
                             using (SqlCommand cmd = new SqlCommand(query, con))
                             {
-                                cmd.Parameters.AddWithValue("@Id", Id.Text);
+                                cmd.Parameters.AddWithValue("@Id", tbUserId.Text);
 
                                 int rowEffected = cmd.ExecuteNonQuery();
                                 if (rowEffected > 0)

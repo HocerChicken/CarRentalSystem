@@ -12,44 +12,45 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CarRentalSystem
 {
-    public partial class Customer : Form
+    public partial class CustomersFr : Form
     {
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlCommandBuilder commandBuilder;
 
-        public Customer()   
+        public CustomersFr()   
         {
             InitializeComponent();
         }
 
         private void Customer_Load(object sender, EventArgs e)
         {
+            tbCusId.Hide();
             loadCustomer();
         }
 
         private void resetTextBox()
         {
-            tbCusId.Text = "";
-            tbCusName.Text = "";
-            tbCusAdd.Text = "";
-            tbPhone.Text = "";
+            tbCusId.Text = String.Empty;
+            tbCusName.Text = String.Empty;
+            tbCusAdd.Text = String.Empty;
+            tbPhone.Text = String.Empty;
         }
 
         private void loadCustomer()
         {
             try
             {
-                string query = "SELECT * FROM Customer";
+                string query = "SELECT * FROM Customers";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     adapter = new SqlDataAdapter(query, conn);
                     commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataSet = new DataSet();
-                    adapter.Fill(dataSet);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
 
-                    cusDGV.DataSource = dataSet.Tables[0];
+                    cusDGV.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -60,8 +61,7 @@ namespace CarRentalSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //String.IsNullOrEmpty(tbCusId.Text) ||
-            if ( String.IsNullOrEmpty(tbCusName.Text) || String.IsNullOrEmpty(tbCusAdd.Text))
+            if ( String.IsNullOrEmpty(tbCusName.Text) || String.IsNullOrEmpty(tbCusAdd.Text) || String.IsNullOrEmpty(tbPhone.Text))
             {
                 MessageBox.Show("Missing Information");
             }
@@ -69,7 +69,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "INSERT INTO Customer(CusName, CusAdd, Phone) VALUES (@CusName, @CusAdd, @Phone)";
+                    string query = "INSERT INTO Customers(cusName, cusAdd, phone) VALUES (@cusName, @cusAdd, @phone)";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {
@@ -78,9 +78,9 @@ namespace CarRentalSystem
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             //cmd.Parameters.AddWithValue("@CusId", tbCusId.Text);
-                            cmd.Parameters.AddWithValue("@CusName", tbCusName.Text);
-                            cmd.Parameters.AddWithValue("@CusAdd", tbCusAdd.Text);
-                            cmd.Parameters.AddWithValue("@Phone", tbPhone.Text);
+                            cmd.Parameters.AddWithValue("@cusName", tbCusName.Text);
+                            cmd.Parameters.AddWithValue("@cusAdd", tbCusAdd.Text);
+                            cmd.Parameters.AddWithValue("@phone", tbPhone.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -116,7 +116,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "Update Customer SET CusId = @CusId, CusName = @CusName, CusAdd = @CusAdd, Phone = @Phone Where CusId = @CusId";
+                    string query = "Update Customers SET cusName = @cusName, cusAdd = @cusAdd, phone = @phone Where cusId = @cusId";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {
@@ -124,10 +124,10 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@CusId", tbCusId.Text);
-                            cmd.Parameters.AddWithValue("@CusName", tbCusName.Text);
-                            cmd.Parameters.AddWithValue("@CusAdd", tbCusAdd.Text);
-                            cmd.Parameters.AddWithValue("@Phone", tbPhone.Text);
+                            cmd.Parameters.AddWithValue("@cusId", tbCusId.Text);
+                            cmd.Parameters.AddWithValue("@cusName", tbCusName.Text);
+                            cmd.Parameters.AddWithValue("@cusAdd", tbCusAdd.Text);
+                            cmd.Parameters.AddWithValue("@phone", tbPhone.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -158,10 +158,10 @@ namespace CarRentalSystem
             }
             else
             {
-                DialogResult result = MessageBox.Show($"Are you sure to delete user with ID: {tbCusId.Text}", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
+                DialogResult result = MessageBox.Show($"Are you sure to delete this user", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
                 if (result == DialogResult.Yes)
                 {
-                    string query = "DELETE FROM Customer WHERE CusId = @CusId";
+                    string query = "DELETE FROM Customers WHERE cusId = @cusId";
                     try
                     {
                         using (SqlConnection con = new SqlConnection(@connectionString))
@@ -169,7 +169,7 @@ namespace CarRentalSystem
                             con.Open();
                             using (SqlCommand cmd = new SqlCommand(query, con))
                             {
-                                cmd.Parameters.AddWithValue("@CusId", tbCusId.Text);
+                                cmd.Parameters.AddWithValue("@cusId", tbCusId.Text);
 
                                 int rowEffected = cmd.ExecuteNonQuery();
                                 if (rowEffected > 0)
@@ -222,6 +222,56 @@ namespace CarRentalSystem
                 tbCusAdd.Text = cusDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
                 tbPhone.Text = cusDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
             }
+        }
+
+
+        private void lbExit_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (cbSearch.SelectedIndex == 0)
+            {
+                loadCustomer("cusName");
+            }
+            else if (cbSearch.SelectedIndex == 1)
+            {
+                loadCustomer("phone");
+            }
+            else
+            {
+                loadCustomer();
+            }
+        }
+        private void loadCustomer(string typeSearch)
+        {
+            try
+            {
+                string query = "SELECT * FROM Customers WHERE " + typeSearch + " LIKE '%' + @SearchText + '%'";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@SearchText", tbSearch.Text);
+
+                    adapter = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    cusDGV.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            loadCustomer();
         }
     }
 }

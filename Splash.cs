@@ -30,7 +30,7 @@ namespace CarRentalSystem
             {
                 progressBar.Value = 0;
                 timer1.Stop();
-                Login login = new Login();
+                LoginFr login = new LoginFr();
                 login.Show();
                 this.Hide();
             }

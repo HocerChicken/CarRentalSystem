@@ -25,21 +25,21 @@ namespace CarRentalSystem
         private void btnCar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Car car = new Car();
+            CarsFr car = new CarsFr();
             car.Show();
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Customer customer = new Customer();
+            CustomersFr customer = new CustomersFr();
             customer.Show();
         }
 
         private void btnRental_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Rental rental = new Rental();
+            VehicleOrderFr rental = new VehicleOrderFr();
             rental.Show();
         }
 
@@ -53,8 +53,15 @@ namespace CarRentalSystem
         private void btnUser_Click(object sender, EventArgs e)
         {
             this.Hide();
-            User user = new User();
+            UsersFr user = new UsersFr();
             user.Show();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginFr loginFr = new LoginFr();
+            loginFr.Show(); 
         }
     }
 }
