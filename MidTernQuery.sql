@@ -46,15 +46,6 @@ CREATE TABLE Bookings
   FOREIGN KEY (cusId) REFERENCES Customers(cusId)
 );
 
-CREATE TABLE CarFeatures
-(
-  carId INT IDENTITY(1,1) NOT NULL,
-  featureId INT NOT NULL,
-  PRIMARY KEY (carId, featureId),
-  FOREIGN KEY (carId) REFERENCES Cars(carId),
-  FOREIGN KEY (featureId) REFERENCES Features(featureId)
-);
-
 CREATE TABLE Invoices
 (
   invoiceId INT IDENTITY(1,1) NOT NULL,
@@ -86,3 +77,19 @@ INSERT INTO [dbo].[Cars] ([carId], [brand], [model], [category], [available], [p
 INSERT INTO [dbo].[Cars] ([carId], [brand], [model], [category], [available], [price]) VALUES (9, N'Audi', N'MPV Low roar', N'7 Seat', N'YES', 550)
 INSERT INTO [dbo].[Cars] ([carId], [brand], [model], [category], [available], [price]) VALUES (10, N'Audi', N'Pickup Truck', N'Pickup Truck', N'YES', 600)
 SET IDENTITY_INSERT [dbo].[Cars] OFF
+
+
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Map', 200);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Bluetooth', 50);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Rearview Camera', 120);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Side-view Camera', 120);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Dashboard Camera', 120);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Speed Alert', 40);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Tire Pressure Sensor', 80);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Collision Sensor', 90);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Sunroof', 150);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('GPS Navigation', 100);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('USB Port', 30);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('All-Wheel Drive', 200);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('Pickup Truck Bed Cover', 200);
+INSERT INTO [dbo].[Features] ([featureName], [featurePrice]) VALUES ('360-degree Camera', 150);

@@ -39,7 +39,7 @@ namespace CarRentalSystem
         private void btnRental_Click(object sender, EventArgs e)
         {
             this.Hide();
-            VehicleOrderFr rental = new VehicleOrderFr();
+            BookingsFr rental = new BookingsFr();
             rental.Show();
         }
 

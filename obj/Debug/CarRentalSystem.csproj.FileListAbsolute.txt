@@ -14,4 +14,4 @@ E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Us
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.CarsFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.CustomersFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.LoginFr.resources
-E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.VehicleOrderFr.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.BookingsFr.resources

@@ -71,11 +71,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VehicleOrderFr.cs">
+    <Compile Include="BookingsFr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VehicleOrderFr.Designer.cs">
-      <DependentUpon>VehicleOrderFr.cs</DependentUpon>
+    <Compile Include="BookingsFr.Designer.cs">
+      <DependentUpon>BookingsFr.cs</DependentUpon>
     </Compile>
     <Compile Include="Return.cs">
       <SubType>Form</SubType>
@@ -97,6 +97,7 @@
     <Compile Include="UsersFr.Designer.cs">
       <DependentUpon>UsersFr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="CarsFr.resx">
       <DependentUpon>CarsFr.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,8 +120,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="VehicleOrderFr.resx">
-      <DependentUpon>VehicleOrderFr.cs</DependentUpon>
+    <EmbeddedResource Include="BookingsFr.resx">
+      <DependentUpon>BookingsFr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Return.resx">
       <DependentUpon>Return.cs</DependentUpon>
