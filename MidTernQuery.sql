@@ -46,14 +46,14 @@ CREATE TABLE Bookings
   FOREIGN KEY (cusId) REFERENCES Customers(cusId)
 );
 
-CREATE TABLE Invoices
-(
-  invoiceId INT IDENTITY(1,1) NOT NULL,
-  dateEstablish DATE NOT NULL,
-  totalAmount INT NOT NULL,
-  bookingId INT NOT NULL,
-  PRIMARY KEY (invoiceId),
-  FOREIGN KEY (bookingId) REFERENCES Bookings(bookingId)
+CREATE TABLE [dbo].[Invoices] (
+    [invoiceId]     INT  IDENTITY (1, 1) NOT NULL,
+    [dateEstablish] DATE NOT NULL,
+    [totalAmount]   INT  NOT NULL,
+    [bookingId]     INT  NOT NULL,
+    PRIMARY KEY CLUSTERED ([invoiceId] ASC),
+    UNIQUE NONCLUSTERED ([bookingId] ASC),
+    FOREIGN KEY ([bookingId]) REFERENCES [dbo].[Bookings] ([bookingId])
 );
 
 CREATE TABLE Shedules
