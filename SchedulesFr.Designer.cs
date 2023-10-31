@@ -1,6 +1,6 @@
 ﻿namespace CarRentalSystem
 {
-    partial class Return
+    partial class SchedulesFr
     {
         /// <summary>
         /// Required designer variable.

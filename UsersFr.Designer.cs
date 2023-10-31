@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbExit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -36,9 +36,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.tbUsername = new System.Windows.Forms.TextBox();
-            this.tbUserId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -49,6 +47,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tbRole = new System.Windows.Forms.TextBox();
+            this.tbUserId = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDGV)).BeginInit();
@@ -126,38 +125,19 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(87, 319);
+            this.label8.Location = new System.Drawing.Point(87, 286);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 20);
             this.label8.TabIndex = 21;
             this.label8.Text = "Username";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(87, 246);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 20);
-            this.label6.TabIndex = 20;
-            this.label6.Text = "UserID";
-            // 
             // tbUsername
             // 
             this.tbUsername.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsername.Location = new System.Drawing.Point(203, 315);
+            this.tbUsername.Location = new System.Drawing.Point(203, 282);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(275, 30);
             this.tbUsername.TabIndex = 19;
-            // 
-            // tbUserId
-            // 
-            this.tbUserId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUserId.Location = new System.Drawing.Point(203, 242);
-            this.tbUserId.Name = "tbUserId";
-            this.tbUserId.Size = new System.Drawing.Size(275, 30);
-            this.tbUserId.TabIndex = 18;
             // 
             // label2
             // 
@@ -175,7 +155,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(87, 391);
+            this.label3.Location = new System.Drawing.Point(87, 358);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 20);
             this.label3.TabIndex = 24;
@@ -184,21 +164,21 @@
             // tbPassword
             // 
             this.tbPassword.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPassword.Location = new System.Drawing.Point(203, 387);
+            this.tbPassword.Location = new System.Drawing.Point(203, 354);
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(275, 30);
             this.tbPassword.TabIndex = 23;
             // 
             // userDGV
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.userDGV.ColumnHeadersHeight = 29;
             this.userDGV.Location = new System.Drawing.Point(585, 242);
             this.userDGV.Name = "userDGV";
@@ -265,7 +245,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(87, 460);
+            this.label4.Location = new System.Drawing.Point(87, 427);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 31;
@@ -274,16 +254,25 @@
             // tbRole
             // 
             this.tbRole.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbRole.Location = new System.Drawing.Point(203, 456);
+            this.tbRole.Location = new System.Drawing.Point(203, 423);
             this.tbRole.Name = "tbRole";
             this.tbRole.Size = new System.Drawing.Size(275, 30);
             this.tbRole.TabIndex = 30;
+            // 
+            // tbUserId
+            // 
+            this.tbUserId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUserId.Location = new System.Drawing.Point(203, 212);
+            this.tbUserId.Name = "tbUserId";
+            this.tbUserId.Size = new System.Drawing.Size(275, 30);
+            this.tbUserId.TabIndex = 32;
             // 
             // UsersFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 708);
+            this.Controls.Add(this.tbUserId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbRole);
             this.Controls.Add(this.btnEdit);
@@ -295,9 +284,7 @@
             this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.tbUsername);
-            this.Controls.Add(this.tbUserId);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -324,9 +311,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbUsername;
-        private System.Windows.Forms.TextBox tbUserId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbPassword;
@@ -337,5 +322,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbRole;
+        private System.Windows.Forms.TextBox tbUserId;
     }
 }

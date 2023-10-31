@@ -36,18 +36,18 @@ namespace CarRentalSystem
             customer.Show();
         }
 
-        private void btnRental_Click(object sender, EventArgs e)
+        private void btnBookings_Click(object sender, EventArgs e)
         {
             this.Hide();
-            BookingsFr rental = new BookingsFr();
-            rental.Show();
+            BookingsFr bookingFr = new BookingsFr();
+            bookingFr.Show();
         }
 
-        private void btnReturn_Click(object sender, EventArgs e)
+        private void btnSchedules_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Return returnF = new Return();
-            returnF.Show();
+            SchedulesFr ccheduleFr = new SchedulesFr();
+            ccheduleFr.Show();
         }
 
         private void btnUser_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,12 @@ namespace CarRentalSystem
         private SqlDataAdapter adapter;
         private SqlDataReader reader;
         private SqlCommandBuilder commandBuilder;
-        private int price = 0;
+        private Dictionary<string, int> decsFeatureAndFuels = new Dictionary<string, int>();
+        private int totalPriceFuelAndFeature = 0;
+        private int totalPriceBetweenDate = 0;
+        private int totalPrice = 0; // equal priceOFcarPerDate * Date rent (totalPriceBetweenDate) + totalPriceFuelAndFeature;
+
+        private int priceOfCarPerDate = 0;
 
         public BookingsFr()
         {
@@ -36,7 +42,7 @@ namespace CarRentalSystem
             //tbRentFee.Text = string.Empty;
         }
 
-        private void loadRental()
+        private void loadBookings()
         {
             try
             {
@@ -45,11 +51,10 @@ namespace CarRentalSystem
                 {
                     conn.Open();
                     adapter = new SqlDataAdapter(query, conn);
-                    commandBuilder = new SqlCommandBuilder(adapter);
-                    var dataSet = new DataSet();
-                    adapter.Fill(dataSet);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
 
-                    bookingDGV.DataSource = dataSet.Tables[0];
+                    bookingDGV.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -90,9 +95,13 @@ namespace CarRentalSystem
                     {
                         string carBrand = reader["brand"].ToString();
                         string carModel = reader["model"].ToString();
-                        //string carCategory = reader["category"].ToString();
+                        string carCategory = reader["category"].ToString();
+                        int price = Convert.ToInt32(reader["price"]);
                         tbModel.Text = carModel;
                         tbBrand.Text = carBrand;
+                        tbSeat.Text = carCategory;
+                        priceOfCarPerDate = price;
+                        tbFee.Text = price.ToString();
                     }
                 }
             }
@@ -136,76 +145,13 @@ namespace CarRentalSystem
             }
         }
 
-        private void UpdateAvailable()
-        {
-            try
-            {
-                string query = "Update Cars SET Available = @Available Where CarId = @CarId";
-
-                using (SqlConnection conn = new SqlConnection(@connectionString))
-                {
-                    conn.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@CarId", cBCusId.Text);
-                        cmd.Parameters.AddWithValue("@Available", "NO");
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
-
         private void Rental_Load(object sender, EventArgs e)
         {
+
             tbBookingId.Hide();
             fillComboCarId();
             fillCustomer();
-            loadRental();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rentalDGV_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                DataGridViewCell cell = bookingDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-                cell.Style.SelectionBackColor = Color.Red;
-            }
-            if (e.RowIndex >= 0)
-            {
-                tbBookingId.Text = bookingDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
-                cbCarId.Text = bookingDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
-                tbName.Text = bookingDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
-                //tbRentFee.Text = rentalDGV.Rows[e.RowIndex].Cells[5].Value.ToString();
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
+            loadBookings();
         }
 
         private void UpdateAvailableOnDelete()
@@ -233,24 +179,438 @@ namespace CarRentalSystem
             }
         }
 
+        private void lbExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void ckbMap_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckbMap.Text, ckbMap.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBBluetooth_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBBluetooth.Text, ckBBluetooth.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBRearCamera_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBRearCamera.Text, ckBRearCamera.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBSideView_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBSideView.Text, ckBSideView.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBDashboard_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBDashboard.Text, ckBDashboard.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBSpeedAlert_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBSpeedAlert.Text, ckBSpeedAlert.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckTirePressure_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckTirePressure.Text, ckTirePressure.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBCollinsion_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBCollinsion.Text, ckBCollinsion.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBSunroof_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBSunroof.Text, ckBSunroof.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBGPSNavigation_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBGPSNavigation.Text , ckBGPSNavigation.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBUSBPort_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBUSBPort.Text , ckBUSBPort.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBAllWheel_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBAllWheel.Text , ckBAllWheel.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckBPickupBed_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckBPickupBed.Text , ckBPickupBed.Checked);
+            loadTotalPrice();
+        }
+
+        private void ckB360_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFeaturePrice(ckB360.Text , ckB360.Checked);
+            loadTotalPrice();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // get descripton for Bookings
+            string desc = "";
+            foreach (var pair in decsFeatureAndFuels)
+            {
+                desc += $"{pair.Key} - {pair.Value}\n";
+            }
+            // check radiobutton check or not
+            int checkedCount = 0;
+
+            foreach (RadioButton radioButton in this.Controls.OfType<RadioButton>())
+            {
+                if (radioButton.Checked)
+                {
+                    checkedCount++;
+                }
+            }
+            if (String.IsNullOrEmpty(cbCarId.Text) || String.IsNullOrEmpty(dtpFromDate.Value.ToString())
+           || String.IsNullOrEmpty(dtpToDate.Value.ToString())
+           || String.IsNullOrEmpty(cBCusId.Text)
+           || String.IsNullOrEmpty(tbPrice.Text)
+           || String.IsNullOrEmpty(tbFromPlace.Text)
+           || String.IsNullOrEmpty(tbToPlace.Text)  
+           || checkedCount != 1 
+           )
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                try
+                {
+                using (SqlConnection conn = new SqlConnection(@connectionString))
+                {
+                    conn.Open();
+                    SqlTransaction transaction = conn.BeginTransaction();
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        int bookingID = -1; 
+
+                        // Command 1: Add a Booking
+                        cmd.Transaction = transaction;
+                        cmd.CommandText = "INSERT INTO Bookings(fromDate, toDate, status, cusId, carId, description, totalCost) " +
+                            "OUTPUT INSERTED.bookingId " +
+                            "VALUES (@fromDate, @toDate, @status, @cusId, @carId, @description, @totalCost)";
+                        cmd.Parameters.AddWithValue("@fromDate", dtpFromDate.Value.ToString());
+                        cmd.Parameters.AddWithValue("@toDate", dtpToDate.Value.ToString());
+                        cmd.Parameters.AddWithValue("@status", "Payment Waiting..");
+                        cmd.Parameters.AddWithValue("@cusId", cBCusId.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
+                        cmd.Parameters.AddWithValue("@description", desc);
+                        cmd.Parameters.AddWithValue("@totalCost", totalPrice);
+
+                        bookingID = (int)cmd.ExecuteScalar();
+
+                        if (bookingID != -1) // Check if bookingID was successfully retrieved
+                        {
+                            // Command 2: Add a Schedule
+                            cmd.CommandText = "INSERT INTO Schedules(fromPlace, toPlace, dateDelay, dateReturn, carId, bookingId) " +
+                                "VALUES (@fromPlace, @toPlace, @dateDelay, @dateReturn, @carId, @bookingId)";
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.AddWithValue("@fromPlace", tbFromPlace.Text);
+                            cmd.Parameters.AddWithValue("@toPlace", tbToPlace.Text);
+                            cmd.Parameters.AddWithValue("@dateDelay", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@dateReturn", DBNull.Value);
+                            cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
+                            cmd.Parameters.AddWithValue("@bookingId", bookingID); // Use the obtained booking ID
+
+                            int rowsEffected = cmd.ExecuteNonQuery();
+                            if (rowsEffected > 0)
+                            {
+                                transaction.Commit();
+                                MessageBox.Show("Created Successfully");
+                                loadBookings();
+                            }
+                            else
+                            {
+                                transaction.Rollback();
+                                MessageBox.Show("Failed to create the Schedule!!!");
+                            }
+                        }
+                        else
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("Failed to retrieve BookingID.");
+                        }
+                    }
+                }
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+            }
+        }
+
+        private void cbCarId_SelectedValueChanged(object sender, EventArgs e)
+        {
+            fillTextBoxCarInfo();
+        }
+
         private void cBCusId_SelectedValueChanged(object sender, EventArgs e)
         {
             fetchCustomer();
         }
 
-        private void cbCarId_SelectedValueChanged(object sender, EventArgs e)
+        private void loadFeaturePrice(string featureName, bool isChecked)
         {
-            fillTextBoxCarInfo();   
+            string query = "Select featurePrice from Features where featureName = '"+featureName+"'";
+            using (SqlConnection conn = new SqlConnection(@connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    //cmd.Parameters.AddWithValue("@featureName", featureName);
+                    SqlDataReader reader = cmd.ExecuteReader(); 
+                    while(reader.Read())
+                    {
+                        int featurePrice = reader.GetInt32(reader.GetOrdinal("featurePrice")); ;
+                        if(isChecked)
+                        {
+                            totalPriceFuelAndFeature += featurePrice;
+                            decsFeatureAndFuels[featureName] = featurePrice;
+                        } else
+                        {
+                            totalPriceFuelAndFeature -= featurePrice; 
+                            decsFeatureAndFuels.Remove(featureName);
+                        }
+                    }
+                }
+            }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void loadFuelPrice(string fuelName, bool isChecked)
         {
-
+            string query = "Select fuelPrice from Fuels where fuelName = '" + fuelName + "'";
+            using (SqlConnection conn = new SqlConnection(@connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    //cmd.Parameters.AddWithValue("@featureName", featureName);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int fuelPrice = reader.GetInt32(reader.GetOrdinal("fuelPrice")); ;
+                        if (isChecked)
+                        {
+                            totalPriceFuelAndFeature += fuelPrice;
+                            decsFeatureAndFuels[fuelName] = fuelPrice;
+                        }
+                        else
+                        {
+                            totalPriceFuelAndFeature -= fuelPrice;
+                            decsFeatureAndFuels.Remove(fuelName);
+                        }
+                    }
+                }
+            }
+            
         }
 
-        private void lbExit_Click_1(object sender, EventArgs e)
+        private void rBAll_CheckedChanged(object sender, EventArgs e)
         {
-            Application.Exit();
+            loadFuelPrice(rBAll.Text, rBAll.Checked);
+            loadTotalPrice();
+        }
+
+        private void rBGas_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFuelPrice(rBGas.Text, rBGas.Checked);
+            loadTotalPrice();
+        }
+
+        private void rBDiesel_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFuelPrice(rBDiesel.Text, rBDiesel.Checked);
+            loadTotalPrice();
+        }
+
+        private void rBElectric_CheckedChanged(object sender, EventArgs e)
+        {
+            loadFuelPrice(rBElectric.Text, rBElectric.Checked);
+            loadTotalPrice();
+        }
+
+        private void bookingDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewCell cell = bookingDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                cell.Style.SelectionBackColor = Color.Red;
+            }
+            if (e.RowIndex >= 0)
+            {
+                DisplayBookingDetails(Convert.ToInt32(bookingDGV.Rows[e.RowIndex].Cells[0].Value.ToString()));
+            }
+        }
+
+        private void dtpFromDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime selectedDate = dtpFromDate.Value.Date;
+            DateTime currentDate = DateTime.Now.Date;
+
+            if (selectedDate < currentDate)
+            {
+                dtpFromDate.ValueChanged -= dtpFromDate_ValueChanged; // Temporarily detach the event handler
+                dtpFromDate.Value = currentDate;
+                dtpFromDate.ValueChanged += dtpFromDate_ValueChanged; // Reattach the event handler
+                MessageBox.Show("The FromDate must be from now time!!");
+            }
+
+            loadTotalPerDate();
+        }
+
+        private void dtpToDate_ValueChanged(object sender, EventArgs e)
+        {
+            loadTotalPerDate();
+        }
+        private void loadTotalPerDate()
+        {
+            DateTime d1 = dtpFromDate.Value.Date;
+            DateTime d2 = dtpToDate.Value.Date;
+            if(d1 <= d2)
+            {
+                TimeSpan ts = d2 - d1;
+
+                int dayDiff = ts.Days;
+                totalPriceBetweenDate = (dayDiff + 1) * priceOfCarPerDate;
+            } else
+            {
+                dtpFromDate.ValueChanged -= dtpFromDate_ValueChanged;
+                dtpToDate.ValueChanged -= dtpToDate_ValueChanged;
+                dtpFromDate.Value = DateTime.Now; dtpToDate.Value = DateTime.Now;
+                dtpFromDate.ValueChanged += dtpFromDate_ValueChanged;
+                dtpToDate.ValueChanged += dtpToDate_ValueChanged;
+                MessageBox.Show("From date must before or equal to 'To date'.");
+                tbPrice.Text = "0";
+            }
+            loadTotalPrice();
+        }
+
+        private void loadTotalPrice()
+        {
+            totalPrice = totalPriceFuelAndFeature + totalPriceBetweenDate;
+            tbPrice.Text = totalPrice.ToString();
+        }
+
+        //booking details
+        private void DisplayBookingDetails(int bookingId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Bookings WHERE bookingId = @bookingId", connection))
+                {
+                    cmd.Parameters.AddWithValue("@bookingId", bookingId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            DateTime fromDate = (DateTime)reader["fromDate"];
+                            DateTime toDate = (DateTime)reader["toDate"];
+                            TimeSpan duration = toDate - fromDate;
+                            int days = duration.Days;
+                            string bookingDetails =
+                                $"Booking ID: {bookingId}\n" +
+                                $"From Date: {reader["fromDate"]}\n" +
+                                $"To Date: {reader["toDate"]}\n" +
+                                $"Status: {reader["status"]}\n" +
+                                $"Customer Name: {GetCustomerName(Convert.ToInt32(reader["cusId"]))}\n" +
+                                $"Car Details: \n{GetCarDetails(Convert.ToInt32(reader["carId"]))} ({days + 1} Days)\n" +
+                                $"{reader["description"]}\n" +
+                                $"Total Cost: {reader["totalCost"]}$";
+
+                            MessageBox.Show(bookingDetails);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Booking not found.");
+                        }
+                    }
+                }
+            }
+        }
+
+        private string GetCustomerName(int customerId)
+        {
+            string query = "Select CusName From Customers where CusId = @CusId";
+            string result = "";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand command = new SqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@CusId", cBCusId.Text);
+                    adapter = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        result = row["CusName"].ToString();
+                    }
+                }
+            }
+            return result;
+        }
+
+        private string GetCarDetails(int carId)
+        {
+            string query2 = "Select * From Cars Where CarId = @CarId";
+            string result = "";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CarId", cbCarId.Text);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string carBrand = reader["brand"].ToString();
+                        string carModel = reader["model"].ToString();
+                        string carCategory = reader["category"].ToString();
+                        int price = Convert.ToInt32(reader["price"]);
+                        result += carModel + " ";
+                        result += carBrand + " ";
+                        result += carCategory + " ";
+                        result += price + "$/ Day";
+                    }
+                }
+            }
+            return result;
         }
     }
 }

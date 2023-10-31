@@ -9,9 +9,9 @@ E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.cs
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.exe
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.pdb
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.MainForm.resources
-E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.Return.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.UsersFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.CarsFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.CustomersFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.LoginFr.resources
 E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.BookingsFr.resources
+E:\StudyInClass\HK1nam4\reposCSharp\CarRentalSystem\obj\Debug\CarRentalSystem.SchedulesFr.resources

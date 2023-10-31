@@ -16,7 +16,6 @@ namespace CarRentalSystem
     {
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
-        private DataTable dt;
         private SqlCommandBuilder commandBuilder;
 
         public UsersFr()
@@ -39,6 +38,7 @@ namespace CarRentalSystem
                     conn.Open();
                     adapter = new SqlDataAdapter(query, conn);
                     commandBuilder = new SqlCommandBuilder(adapter);
+                    DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
                     userDGV.DataSource = dt;
@@ -52,7 +52,6 @@ namespace CarRentalSystem
 
         private void resetTextBox()
         {
-            tbUserId.Text = String.Empty;
             tbUsername.Text = String.Empty;
             tbPassword.Text = String.Empty;
             tbRole.Text = String.Empty;
@@ -60,7 +59,7 @@ namespace CarRentalSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbUserId.Text) || String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text)
+            if (String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text)
                 || String.IsNullOrEmpty(tbRole.Text))
             {
                 MessageBox.Show("Missing Information");
@@ -69,7 +68,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "INSERT INTO Users(Id, Username, Userpassword) VALUES (@Id, @Username, @Userpassword)";
+                    string query = "INSERT INTO Users(username, userpassword, role) VALUES (@username, @userpassword, @role)";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {
@@ -77,9 +76,9 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@", tbUserId.Text);
-                            cmd.Parameters.AddWithValue("@Username", tbUsername.Text);
-                            cmd.Parameters.AddWithValue("@Userpassword", tbPassword.Text);
+                            cmd.Parameters.AddWithValue("@username", tbUsername.Text);
+                            cmd.Parameters.AddWithValue("@userpassword", tbPassword.Text);
+                            cmd.Parameters.AddWithValue("@role", tbRole.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -115,12 +114,14 @@ namespace CarRentalSystem
                 tbUserId.Text = userDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
                 tbUsername.Text = userDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
                 tbPassword.Text = userDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
+                tbRole.Text = userDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
             }
-        }
+        } 
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(tbUserId.Text) || String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text))
+            if (String.IsNullOrEmpty(tbUserId.Text) || String.IsNullOrEmpty(tbUsername.Text) || String.IsNullOrEmpty(tbPassword.Text)
+                || String.IsNullOrEmpty(tbRole.Text))
             {
                 MessageBox.Show("Missing Information");
             }
@@ -128,7 +129,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "Update Users SET Id = @Id, Username = @Username, Userpassword = @Userpassword Where Id = @Id";
+                    string query = "Update Users SET Username = @Username, userpassword = @userpassword, role = @role Where userId = @userId";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {
@@ -136,9 +137,10 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@Id", tbUserId.Text);
+                            cmd.Parameters.AddWithValue("@userId", tbUserId.Text);
                             cmd.Parameters.AddWithValue("@Username", tbUsername.Text);
                             cmd.Parameters.AddWithValue("@Userpassword", tbPassword.Text);
+                            cmd.Parameters.AddWithValue("@role", tbRole.Text);
 
                             int rowEffected = cmd.ExecuteNonQuery();
                             if (rowEffected > 0)
@@ -172,7 +174,7 @@ namespace CarRentalSystem
                 DialogResult result = MessageBox.Show($"Are you sure to delete user with ID: {tbUserId.Text}", "Delete User", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2, MessageBoxOptions.ServiceNotification);
                 if (result == DialogResult.Yes)
                 {
-                    string query = "DELETE FROM USERS WHERE Id = @Id";
+                    string query = "DELETE FROM USERS WHERE userId = @userId";
                     try
                     {
                         using (SqlConnection con = new SqlConnection(@connectionString))
@@ -180,7 +182,7 @@ namespace CarRentalSystem
                             con.Open();
                             using (SqlCommand cmd = new SqlCommand(query, con))
                             {
-                                cmd.Parameters.AddWithValue("@Id", tbUserId.Text);
+                                cmd.Parameters.AddWithValue("@userId", tbUserId.Text);
 
                                 int rowEffected = cmd.ExecuteNonQuery();
                                 if (rowEffected > 0)
@@ -215,6 +217,7 @@ namespace CarRentalSystem
 
         private void User_Load(object sender, EventArgs e)
         {
+            tbUserId.Hide();
             loadUser();
         }
     }

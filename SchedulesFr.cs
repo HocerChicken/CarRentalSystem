@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace CarRentalSystem
 {
-    public partial class Return : Form
+    public partial class SchedulesFr : Form
     {
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlDataReader reader;
         private SqlCommandBuilder commandBuilder;
 
-        public Return()
+        public SchedulesFr()
         {
             InitializeComponent();
         }

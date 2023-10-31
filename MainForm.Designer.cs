@@ -36,8 +36,8 @@
             this.lbExit = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCustomer = new System.Windows.Forms.Button();
-            this.btnRental = new System.Windows.Forms.Button();
-            this.btnReturn = new System.Windows.Forms.Button();
+            this.btnBookings = new System.Windows.Forms.Button();
+            this.btnSchedules = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -136,31 +136,31 @@
             this.btnCustomer.UseVisualStyleBackColor = false;
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
-            // btnRental
+            // btnBookings
             // 
-            this.btnRental.BackColor = System.Drawing.Color.Red;
-            this.btnRental.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRental.ForeColor = System.Drawing.Color.White;
-            this.btnRental.Location = new System.Drawing.Point(495, 164);
-            this.btnRental.Name = "btnRental";
-            this.btnRental.Size = new System.Drawing.Size(200, 48);
-            this.btnRental.TabIndex = 18;
-            this.btnRental.Text = "VEHICLE ORDER";
-            this.btnRental.UseVisualStyleBackColor = false;
-            this.btnRental.Click += new System.EventHandler(this.btnRental_Click);
+            this.btnBookings.BackColor = System.Drawing.Color.Red;
+            this.btnBookings.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBookings.ForeColor = System.Drawing.Color.White;
+            this.btnBookings.Location = new System.Drawing.Point(495, 164);
+            this.btnBookings.Name = "btnBookings";
+            this.btnBookings.Size = new System.Drawing.Size(200, 48);
+            this.btnBookings.TabIndex = 18;
+            this.btnBookings.Text = "BOOKINGS";
+            this.btnBookings.UseVisualStyleBackColor = false;
+            this.btnBookings.Click += new System.EventHandler(this.btnBookings_Click);
             // 
-            // btnReturn
+            // btnSchedules
             // 
-            this.btnReturn.BackColor = System.Drawing.Color.Red;
-            this.btnReturn.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.ForeColor = System.Drawing.Color.White;
-            this.btnReturn.Location = new System.Drawing.Point(704, 164);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(157, 48);
-            this.btnReturn.TabIndex = 19;
-            this.btnReturn.Text = "INVOICES";
-            this.btnReturn.UseVisualStyleBackColor = false;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
+            this.btnSchedules.BackColor = System.Drawing.Color.Red;
+            this.btnSchedules.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSchedules.ForeColor = System.Drawing.Color.White;
+            this.btnSchedules.Location = new System.Drawing.Point(704, 164);
+            this.btnSchedules.Name = "btnSchedules";
+            this.btnSchedules.Size = new System.Drawing.Size(157, 48);
+            this.btnSchedules.TabIndex = 19;
+            this.btnSchedules.Text = "SCHEDULES";
+            this.btnSchedules.UseVisualStyleBackColor = false;
+            this.btnSchedules.Click += new System.EventHandler(this.btnSchedules_Click);
             // 
             // btnUser
             // 
@@ -195,8 +195,8 @@
             this.ClientSize = new System.Drawing.Size(1202, 673);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnUser);
-            this.Controls.Add(this.btnReturn);
-            this.Controls.Add(this.btnRental);
+            this.Controls.Add(this.btnSchedules);
+            this.Controls.Add(this.btnBookings);
             this.Controls.Add(this.btnCustomer);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -222,8 +222,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnCustomer;
-        private System.Windows.Forms.Button btnRental;
-        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.Button btnBookings;
+        private System.Windows.Forms.Button btnSchedules;
         private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label lbExit;

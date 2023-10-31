@@ -77,11 +77,11 @@
     <Compile Include="BookingsFr.Designer.cs">
       <DependentUpon>BookingsFr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Return.cs">
+    <Compile Include="SchedulesFr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Return.Designer.cs">
-      <DependentUpon>Return.cs</DependentUpon>
+    <Compile Include="SchedulesFr.Designer.cs">
+      <DependentUpon>SchedulesFr.cs</DependentUpon>
     </Compile>
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
@@ -123,8 +123,8 @@
     <EmbeddedResource Include="BookingsFr.resx">
       <DependentUpon>BookingsFr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Return.resx">
-      <DependentUpon>Return.cs</DependentUpon>
+    <EmbeddedResource Include="SchedulesFr.resx">
+      <DependentUpon>SchedulesFr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
