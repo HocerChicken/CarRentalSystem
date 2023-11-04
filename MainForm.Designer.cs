@@ -70,7 +70,7 @@
             this.btnCar.BackColor = System.Drawing.Color.Red;
             this.btnCar.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCar.ForeColor = System.Drawing.Color.White;
-            this.btnCar.Location = new System.Drawing.Point(162, 164);
+            this.btnCar.Location = new System.Drawing.Point(150, 164);
             this.btnCar.Name = "btnCar";
             this.btnCar.Size = new System.Drawing.Size(157, 48);
             this.btnCar.TabIndex = 14;
@@ -128,9 +128,9 @@
             this.btnCustomer.BackColor = System.Drawing.Color.Red;
             this.btnCustomer.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCustomer.Location = new System.Drawing.Point(326, 164);
+            this.btnCustomer.Location = new System.Drawing.Point(313, 164);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(157, 48);
+            this.btnCustomer.Size = new System.Drawing.Size(176, 48);
             this.btnCustomer.TabIndex = 17;
             this.btnCustomer.Text = "CUSTOMERS";
             this.btnCustomer.UseVisualStyleBackColor = false;
@@ -154,9 +154,9 @@
             this.btnSchedules.BackColor = System.Drawing.Color.Red;
             this.btnSchedules.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSchedules.ForeColor = System.Drawing.Color.White;
-            this.btnSchedules.Location = new System.Drawing.Point(704, 164);
+            this.btnSchedules.Location = new System.Drawing.Point(701, 164);
             this.btnSchedules.Name = "btnSchedules";
-            this.btnSchedules.Size = new System.Drawing.Size(157, 48);
+            this.btnSchedules.Size = new System.Drawing.Size(173, 48);
             this.btnSchedules.TabIndex = 19;
             this.btnSchedules.Text = "SCHEDULES";
             this.btnSchedules.UseVisualStyleBackColor = false;
@@ -167,7 +167,7 @@
             this.btnUser.BackColor = System.Drawing.Color.Red;
             this.btnUser.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUser.ForeColor = System.Drawing.Color.White;
-            this.btnUser.Location = new System.Drawing.Point(870, 164);
+            this.btnUser.Location = new System.Drawing.Point(880, 164);
             this.btnUser.Name = "btnUser";
             this.btnUser.Size = new System.Drawing.Size(157, 48);
             this.btnUser.TabIndex = 20;

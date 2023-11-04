@@ -16,7 +16,7 @@ namespace CarRentalSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BookingsFr());
+            Application.Run(new SchedulesFr());
         }
     }
 }

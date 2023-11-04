@@ -25,7 +25,6 @@ namespace CarRentalSystem
 
         private void Customer_Load(object sender, EventArgs e)
         {
-            tbCusId.Hide();
             loadCustomer();
         }
 
@@ -61,7 +60,7 @@ namespace CarRentalSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if ( String.IsNullOrEmpty(tbCusName.Text) || String.IsNullOrEmpty(tbCusAdd.Text) || String.IsNullOrEmpty(tbPhone.Text))
+            if (String.IsNullOrEmpty(tbCusId.Text) || String.IsNullOrEmpty(tbCusName.Text) || String.IsNullOrEmpty(tbCusAdd.Text) || String.IsNullOrEmpty(tbPhone.Text))
             {
                 MessageBox.Show("Missing Information");
             }
@@ -69,7 +68,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "INSERT INTO Customers(cusName, cusAdd, phone) VALUES (@cusName, @cusAdd, @phone)";
+                    string query = "INSERT INTO Customers(cusId, cusName, cusAdd, phone) VALUES (@cusId, @cusName, @cusAdd, @phone)";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {
@@ -77,7 +76,7 @@ namespace CarRentalSystem
 
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            //cmd.Parameters.AddWithValue("@CusId", tbCusId.Text);
+                            cmd.Parameters.AddWithValue("@CusId", tbCusId.Text);
                             cmd.Parameters.AddWithValue("@cusName", tbCusName.Text);
                             cmd.Parameters.AddWithValue("@cusAdd", tbCusAdd.Text);
                             cmd.Parameters.AddWithValue("@phone", tbPhone.Text);
@@ -116,7 +115,7 @@ namespace CarRentalSystem
             {
                 try
                 {
-                    string query = "Update Customers SET cusName = @cusName, cusAdd = @cusAdd, phone = @phone Where cusId = @cusId";
+                    string query = "Update Customers SET cusId = @cusId, cusName = @cusName, cusAdd = @cusAdd, phone = @phone Where cusId = @cusId";
 
                     using (SqlConnection conn = new SqlConnection(@connectionString))
                     {

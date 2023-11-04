@@ -35,10 +35,31 @@ namespace CarRentalSystem
         private void resetTextBox()
         {
             tbBookingId.Text = string.Empty;
+            cbCarId.SelectedValue = -1;
+            tbBrand.Text = string.Empty;
+            tbModel.Text = string.Empty;
+            tbFee.Text = string.Empty;
+            cBCusId.SelectedValue = -1;
             tbName.Text = string.Empty;
-            cbCarId.Text = string.Empty;
-            cBCusId.Text = string.Empty;
-            tbName.Text = string.Empty;
+            //reset checkbox
+            foreach (Control control in this.Controls)
+            {
+                if (control is CheckBox)
+                {
+                    CheckBox checkBox = (CheckBox)control;
+                    checkBox.Checked = false;
+                }
+                if(control is RadioButton)
+                {
+                    RadioButton radioButton = (RadioButton)control;
+                    radioButton.Checked = false;
+                }
+            }
+            tbFromPlace.Text = string.Empty;
+            tbToPlace.Text = string.Empty;
+            dtpFromDate.Value = DateTime.Now;
+            dtpToDate.Value = DateTime.Now;
+            tbPrice.Text = string.Empty;
             //tbRentFee.Text = string.Empty;
         }
 
@@ -46,7 +67,7 @@ namespace CarRentalSystem
         {
             try
             {
-                string query = "SELECT * FROM Bookings";
+                string query = "SELECT bookingId, carId , B.CusId, CusName , fromDate, toDate, status, description, totalCost FROM Bookings B, Customers Cus Where B.CusId = Cus.CusId";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -65,7 +86,7 @@ namespace CarRentalSystem
 
         private void fillComboCarId()
         {
-            string query = "Select CarId from Cars Where available = 'YES'";
+            string query = "Select CarId from Cars";
             using(SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -81,31 +102,6 @@ namespace CarRentalSystem
             }
         }
 
-        private void fillTextBoxCarInfo()
-        {
-            string query2 = "Select * From Cars Where CarId = @CarId";
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(query2, conn))
-                {
-                    cmd.Parameters.AddWithValue("@CarId", cbCarId.Text);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        string carBrand = reader["brand"].ToString();
-                        string carModel = reader["model"].ToString();
-                        string carCategory = reader["category"].ToString();
-                        int price = Convert.ToInt32(reader["price"]);
-                        tbModel.Text = carModel;
-                        tbBrand.Text = carBrand;
-                        tbSeat.Text = carCategory;
-                        priceOfCarPerDate = price;
-                        tbFee.Text = price.ToString();
-                    }
-                }
-            }
-        }
 
         private void fetchCustomer()
         {
@@ -154,30 +150,7 @@ namespace CarRentalSystem
             loadBookings();
         }
 
-        private void UpdateAvailableOnDelete()
-        {
-            try
-            {
-                string query = "Update Car SET Available = @Available Where RegNum = @RegNum";
 
-                using (SqlConnection conn = new SqlConnection(@connectionString))
-                {
-                    conn.Open();
-
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@RegNum", cbCarId.Text);
-                        cmd.Parameters.AddWithValue("@Available", "YES");
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
-        }
 
         private void lbExit_Click(object sender, EventArgs e)
         {
@@ -306,68 +279,81 @@ namespace CarRentalSystem
             }
             else
             {
-                try
+                DateTime fromDate = dtpFromDate.Value;
+                DateTime toDate = dtpToDate.Value;
+                if (Utils.Utils.IsCarAvailableForBooking(connectionString, fromDate, toDate, cbCarId.Text))
                 {
-                using (SqlConnection conn = new SqlConnection(@connectionString))
-                {
-                    conn.Open();
-                    SqlTransaction transaction = conn.BeginTransaction();
-                    using (SqlCommand cmd = conn.CreateCommand())
+                    try
                     {
-                        int bookingID = -1; 
-
-                        // Command 1: Add a Booking
-                        cmd.Transaction = transaction;
-                        cmd.CommandText = "INSERT INTO Bookings(fromDate, toDate, status, cusId, carId, description, totalCost) " +
-                            "OUTPUT INSERTED.bookingId " +
-                            "VALUES (@fromDate, @toDate, @status, @cusId, @carId, @description, @totalCost)";
-                        cmd.Parameters.AddWithValue("@fromDate", dtpFromDate.Value.ToString());
-                        cmd.Parameters.AddWithValue("@toDate", dtpToDate.Value.ToString());
-                        cmd.Parameters.AddWithValue("@status", "Payment Waiting..");
-                        cmd.Parameters.AddWithValue("@cusId", cBCusId.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
-                        cmd.Parameters.AddWithValue("@description", desc);
-                        cmd.Parameters.AddWithValue("@totalCost", totalPrice);
-
-                        bookingID = (int)cmd.ExecuteScalar();
-
-                        if (bookingID != -1) // Check if bookingID was successfully retrieved
+                        using (SqlConnection conn = new SqlConnection(@connectionString))
                         {
-                            // Command 2: Add a Schedule
-                            cmd.CommandText = "INSERT INTO Schedules(fromPlace, toPlace, dateDelay, dateReturn, carId, bookingId) " +
-                                "VALUES (@fromPlace, @toPlace, @dateDelay, @dateReturn, @carId, @bookingId)";
-                            cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@fromPlace", tbFromPlace.Text);
-                            cmd.Parameters.AddWithValue("@toPlace", tbToPlace.Text);
-                            cmd.Parameters.AddWithValue("@dateDelay", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@dateReturn", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
-                            cmd.Parameters.AddWithValue("@bookingId", bookingID); // Use the obtained booking ID
+                            conn.Open();
+                            SqlTransaction transaction = conn.BeginTransaction();
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                int bookingID = -1;
 
-                            int rowsEffected = cmd.ExecuteNonQuery();
-                            if (rowsEffected > 0)
-                            {
-                                transaction.Commit();
-                                MessageBox.Show("Created Successfully");
-                                loadBookings();
+                                // Command 1: Add a Booking
+                                cmd.Transaction = transaction;
+                                cmd.CommandText = "INSERT INTO Bookings(fromDate, toDate, status, cusId, carId, description, totalCost) " +
+                                    "OUTPUT INSERTED.bookingId " +
+                                    "VALUES (@fromDate, @toDate, @status, @cusId, @carId, @description, @totalCost)";
+                                cmd.Parameters.AddWithValue("@fromDate", dtpFromDate.Value.ToString());
+                                cmd.Parameters.AddWithValue("@toDate", dtpToDate.Value.ToString());
+                                cmd.Parameters.AddWithValue("@status", "In Rental");
+                                cmd.Parameters.AddWithValue("@cusId", cBCusId.SelectedValue.ToString());
+                                cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
+                                cmd.Parameters.AddWithValue("@description", desc);
+                                cmd.Parameters.AddWithValue("@totalCost", totalPrice);
+
+                                bookingID = (int)cmd.ExecuteScalar();
+
+                                if (bookingID != -1) // Check if bookingID was successfully retrieved
+                                {
+                                    // Command 2: Add a Schedule
+                                    cmd.CommandText = "INSERT INTO Schedules(fromPlace, toPlace, dateDelay, dateReturn, fineCost, totalCost, bookingId, carId) " +
+                                        "VALUES (@fromPlace, @toPlace, @dateDelay, @dateReturn, @fineCost, @totalCost, @bookingId, @carId)";
+                                    cmd.Parameters.Clear();
+                                    cmd.Parameters.AddWithValue("@fromPlace", tbFromPlace.Text);
+                                    cmd.Parameters.AddWithValue("@toPlace", tbToPlace.Text);
+                                    cmd.Parameters.AddWithValue("@dateDelay", DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@dateReturn", DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@fineCost", DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@totalCost", DBNull.Value);
+                                    cmd.Parameters.AddWithValue("@carId", cbCarId.SelectedValue.ToString());
+                                    cmd.Parameters.AddWithValue("@bookingId", bookingID); // Use the obtained booking ID
+
+                                    int rowsEffected = cmd.ExecuteNonQuery();
+                                    if (rowsEffected > 0)
+                                    {
+                                        transaction.Commit();
+                                        MessageBox.Show("Created Successfully");
+                                        loadBookings();
+                                        //UpdateAvailable();
+                                        fillComboCarId();
+                                        resetTextBox();
+                                    }
+                                    else
+                                    {
+                                        transaction.Rollback();
+                                        MessageBox.Show("Failed to create the Schedule!!!");
+                                    }
+                                }
+                                else
+                                {
+                                    transaction.Rollback();
+                                    MessageBox.Show("Failed to retrieve BookingID.");
+                                }
                             }
-                            else
-                            {
-                                transaction.Rollback();
-                                MessageBox.Show("Failed to create the Schedule!!!");
-                            }
-                        }
-                        else
-                        {
-                            transaction.Rollback();
-                            MessageBox.Show("Failed to retrieve BookingID.");
                         }
                     }
-                }
-                }
-                catch (Exception Ex)
+                    catch (Exception Ex)
+                    {
+                        MessageBox.Show(Ex.Message);
+                    }
+                } else
                 {
-                    MessageBox.Show(Ex.Message);
+                    MessageBox.Show("Car is Rented!!. Please check FromDate and ToDate for this car.");
                 }
             }
         }
@@ -375,6 +361,32 @@ namespace CarRentalSystem
         private void cbCarId_SelectedValueChanged(object sender, EventArgs e)
         {
             fillTextBoxCarInfo();
+        }
+
+        private void fillTextBoxCarInfo()
+        {
+            string query2 = "Select * From Cars Where CarId = @CarId";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@CarId", cbCarId.Text);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string carBrand = reader["brand"].ToString();
+                        string carModel = reader["model"].ToString();
+                        string carCategory = reader["category"].ToString();
+                        int price = Convert.ToInt32(reader["price"]);
+                        tbModel.Text = carModel;
+                        tbBrand.Text = carBrand;
+                        tbSeat.Text = carCategory;
+                        priceOfCarPerDate = price;
+                        tbFee.Text = price.ToString();
+                    }
+                }
+            }
         }
 
         private void cBCusId_SelectedValueChanged(object sender, EventArgs e)
@@ -573,7 +585,7 @@ namespace CarRentalSystem
                 conn.Open();
                 using (SqlCommand command = new SqlCommand(query, conn))
                 {
-                    command.Parameters.AddWithValue("@CusId", cBCusId.Text);
+                    command.Parameters.AddWithValue("@CusId", customerId);
                     adapter = new SqlDataAdapter(command);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -595,7 +607,7 @@ namespace CarRentalSystem
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query2, conn))
                 {
-                    cmd.Parameters.AddWithValue("@CarId", cbCarId.Text);
+                    cmd.Parameters.AddWithValue("@CarId", carId);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {

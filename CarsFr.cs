@@ -36,7 +36,7 @@ namespace CarRentalSystem
         {
             try
             {
-                string query = "SELECT * FROM Cars WHERE Available = 'YES'";
+                string query = "SELECT * FROM Cars";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -239,15 +239,15 @@ namespace CarRentalSystem
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (cbSearch.SelectedIndex == 0)
+            if (cbSearch.SelectedIndex == 1)
             {
                 loadCars("brand");
             } 
-            else if (cbSearch.SelectedIndex == 1)
+            else if (cbSearch.SelectedIndex == 2)
             {
                 loadCars("model");
             } 
-            else if (cbSearch.SelectedIndex == 2) 
+            else if (cbSearch.SelectedIndex == 3) 
             {
                 loadCars("category");
             } 

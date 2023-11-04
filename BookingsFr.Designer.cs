@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -89,6 +90,15 @@
             this.label16 = new System.Windows.Forms.Label();
             this.tbFee = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cusName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -270,9 +280,6 @@
             // 
             this.cbCarId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCarId.FormattingEnabled = true;
-            this.cbCarId.Items.AddRange(new object[] {
-            "YES",
-            "NO"});
             this.cbCarId.Location = new System.Drawing.Point(278, 213);
             this.cbCarId.Name = "cbCarId";
             this.cbCarId.Size = new System.Drawing.Size(275, 28);
@@ -729,19 +736,37 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.bookingDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.bookingDGV.ColumnHeadersHeight = 29;
-            this.bookingDGV.Location = new System.Drawing.Point(977, 228);
-            this.bookingDGV.Name = "bookingDGV";
+            this.bookingDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column7,
+            this.Column6,
+            this.cusName,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.totalCost});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bookingDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.bookingDGV.DefaultCellStyle = dataGridViewCellStyle2;
+            this.bookingDGV.Location = new System.Drawing.Point(982, 228);
+            this.bookingDGV.Name = "bookingDGV";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bookingDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.bookingDGV.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Red;
-            this.bookingDGV.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Red;
+            this.bookingDGV.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.bookingDGV.RowTemplate.Height = 24;
             this.bookingDGV.Size = new System.Drawing.Size(310, 664);
             this.bookingDGV.TabIndex = 132;
@@ -776,6 +801,78 @@
             this.label17.Size = new System.Drawing.Size(48, 17);
             this.label17.TabIndex = 135;
             this.label17.Text = "/Day";
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "bookingId";
+            this.Column1.HeaderText = "Booking ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "carId";
+            this.Column7.HeaderText = "Car Id";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 125;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "cusId";
+            this.Column6.HeaderText = "Customer ID";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 125;
+            // 
+            // cusName
+            // 
+            this.cusName.DataPropertyName = "cusName";
+            this.cusName.HeaderText = "Customer Name";
+            this.cusName.MinimumWidth = 6;
+            this.cusName.Name = "cusName";
+            this.cusName.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "fromDate";
+            this.Column2.HeaderText = "From Date";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "toDate";
+            this.Column3.HeaderText = "To Date";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "status";
+            this.Column4.HeaderText = "Status";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "description";
+            this.Column5.HeaderText = "Description";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 125;
+            // 
+            // totalCost
+            // 
+            this.totalCost.DataPropertyName = "totalCost";
+            this.totalCost.HeaderText = "Total Cost";
+            this.totalCost.MinimumWidth = 6;
+            this.totalCost.Name = "totalCost";
+            this.totalCost.Width = 125;
             // 
             // BookingsFr
             // 
@@ -839,7 +936,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BookingsFr";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rental";
+            this.Text = "Booking";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Rental_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -912,5 +1009,14 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox tbFee;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cusName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalCost;
     }
 }
