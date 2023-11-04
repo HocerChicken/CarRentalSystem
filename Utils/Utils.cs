@@ -10,7 +10,7 @@ namespace CarRentalSystem.Utils
 {
     public static class Utils
     {
-        public static bool IsCarAvailableForBooking(string connectionString,DateTime fromDate, DateTime toDate, string carId)
+        public static bool IsCarAvailableForBooking(string connectionString, DateTime fromDate, DateTime toDate, string carId)
         {
             using (SqlConnection connection = new SqlConnection(@connectionString))
             {
@@ -36,6 +36,5 @@ namespace CarRentalSystem.Utils
                 }
             }
         }
-
     }
 }

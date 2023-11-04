@@ -42,9 +42,12 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbCarId = new System.Windows.Forms.TextBox();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.tbStatus = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cbCarId = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cBCusId2 = new System.Windows.Forms.ComboBox();
             this.tbTotalCost = new System.Windows.Forms.TextBox();
@@ -58,7 +61,10 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.tbScheduleID = new System.Windows.Forms.TextBox();
+            this.tbBookingID = new System.Windows.Forms.TextBox();
+            this.dtpFromdate = new System.Windows.Forms.DateTimePicker();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.schedulesDGV)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -89,11 +95,11 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.schedulesDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.schedulesDGV.ColumnHeadersHeight = 29;
-            this.schedulesDGV.Location = new System.Drawing.Point(934, 228);
+            this.schedulesDGV.Location = new System.Drawing.Point(800, 228);
             this.schedulesDGV.Name = "schedulesDGV";
             this.schedulesDGV.RowHeadersWidth = 51;
             this.schedulesDGV.RowTemplate.Height = 24;
-            this.schedulesDGV.Size = new System.Drawing.Size(235, 339);
+            this.schedulesDGV.Size = new System.Drawing.Size(369, 339);
             this.schedulesDGV.TabIndex = 57;
             this.schedulesDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bookingDGV_CellClick);
             // 
@@ -224,10 +230,12 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.cbStatus);
-            this.panel4.Controls.Add(this.button2);
+            this.panel4.Controls.Add(this.dtpEndDate);
+            this.panel4.Controls.Add(this.label10);
+            this.panel4.Controls.Add(this.tbCarId);
+            this.panel4.Controls.Add(this.btnCheck);
+            this.panel4.Controls.Add(this.tbStatus);
             this.panel4.Controls.Add(this.label13);
-            this.panel4.Controls.Add(this.cbCarId);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.cBCusId2);
             this.panel4.Controls.Add(this.tbTotalCost);
@@ -243,42 +251,73 @@
             this.panel4.Controls.Add(this.label3);
             this.panel4.Location = new System.Drawing.Point(0, 228);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(934, 512);
+            this.panel4.Size = new System.Drawing.Size(794, 512);
             this.panel4.TabIndex = 179;
             // 
-            // button2
+            // dtpEndDate
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(583, 194);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(199, 45);
-            this.button2.TabIndex = 195;
-            this.button2.Text = "Confirm";
-            this.button2.UseVisualStyleBackColor = false;
+            this.dtpEndDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpEndDate.Location = new System.Drawing.Point(244, 236);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(275, 27);
+            this.dtpEndDate.TabIndex = 197;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(93, 236);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 20);
+            this.label10.TabIndex = 196;
+            this.label10.Text = "End Date";
+            // 
+            // tbCarId
+            // 
+            this.tbCarId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbCarId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCarId.Location = new System.Drawing.Point(244, 160);
+            this.tbCarId.Name = "tbCarId";
+            this.tbCarId.Size = new System.Drawing.Size(275, 30);
+            this.tbCarId.TabIndex = 195;
+            // 
+            // btnCheck
+            // 
+            this.btnCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheck.BackColor = System.Drawing.Color.Red;
+            this.btnCheck.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCheck.ForeColor = System.Drawing.Color.White;
+            this.btnCheck.Location = new System.Drawing.Point(609, 193);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(128, 38);
+            this.btnCheck.TabIndex = 180;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = false;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // tbStatus
+            // 
+            this.tbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbStatus.Location = new System.Drawing.Point(637, 160);
+            this.tbStatus.Name = "tbStatus";
+            this.tbStatus.Size = new System.Drawing.Size(100, 27);
+            this.tbStatus.TabIndex = 194;
             // 
             // label13
             // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(579, 162);
+            this.label13.Location = new System.Drawing.Point(549, 162);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(75, 20);
             this.label13.TabIndex = 193;
             this.label13.Text = "Status";
-            // 
-            // cbCarId
-            // 
-            this.cbCarId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbCarId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCarId.FormattingEnabled = true;
-            this.cbCarId.Location = new System.Drawing.Point(274, 160);
-            this.cbCarId.Name = "cbCarId";
-            this.cbCarId.Size = new System.Drawing.Size(275, 28);
-            this.cbCarId.TabIndex = 192;
             // 
             // label2
             // 
@@ -286,7 +325,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(125, 162);
+            this.label2.Location = new System.Drawing.Point(95, 162);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 191;
@@ -297,7 +336,7 @@
             this.cBCusId2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cBCusId2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cBCusId2.FormattingEnabled = true;
-            this.cBCusId2.Location = new System.Drawing.Point(274, 31);
+            this.cBCusId2.Location = new System.Drawing.Point(244, 31);
             this.cBCusId2.Name = "cBCusId2";
             this.cBCusId2.Size = new System.Drawing.Size(275, 28);
             this.cBCusId2.TabIndex = 190;
@@ -306,7 +345,7 @@
             // 
             this.tbTotalCost.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbTotalCost.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTotalCost.Location = new System.Drawing.Point(274, 452);
+            this.tbTotalCost.Location = new System.Drawing.Point(244, 476);
             this.tbTotalCost.Name = "tbTotalCost";
             this.tbTotalCost.Size = new System.Drawing.Size(275, 30);
             this.tbTotalCost.TabIndex = 189;
@@ -317,7 +356,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(123, 456);
+            this.label12.Location = new System.Drawing.Point(93, 480);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(119, 20);
             this.label12.TabIndex = 188;
@@ -327,7 +366,7 @@
             // 
             this.tbFineCost.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbFineCost.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFineCost.Location = new System.Drawing.Point(274, 392);
+            this.tbFineCost.Location = new System.Drawing.Point(244, 421);
             this.tbFineCost.Name = "tbFineCost";
             this.tbFineCost.Size = new System.Drawing.Size(275, 30);
             this.tbFineCost.TabIndex = 187;
@@ -338,7 +377,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(123, 396);
+            this.label9.Location = new System.Drawing.Point(93, 425);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(108, 20);
             this.label9.TabIndex = 186;
@@ -348,16 +387,17 @@
             // 
             this.dtpReturnDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpReturnDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpReturnDate.Location = new System.Drawing.Point(274, 263);
+            this.dtpReturnDate.Location = new System.Drawing.Point(244, 300);
             this.dtpReturnDate.Name = "dtpReturnDate";
             this.dtpReturnDate.Size = new System.Drawing.Size(275, 27);
             this.dtpReturnDate.TabIndex = 185;
+            this.dtpReturnDate.ValueChanged += new System.EventHandler(this.dtpReturnDate_ValueChanged);
             // 
             // tbDateDelay
             // 
             this.tbDateDelay.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbDateDelay.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDateDelay.Location = new System.Drawing.Point(274, 323);
+            this.tbDateDelay.Location = new System.Drawing.Point(244, 360);
             this.tbDateDelay.Name = "tbDateDelay";
             this.tbDateDelay.Size = new System.Drawing.Size(275, 30);
             this.tbDateDelay.TabIndex = 184;
@@ -368,7 +408,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(123, 263);
+            this.label7.Location = new System.Drawing.Point(93, 300);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(130, 20);
             this.label7.TabIndex = 183;
@@ -380,7 +420,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(123, 327);
+            this.label6.Location = new System.Drawing.Point(93, 364);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 20);
             this.label6.TabIndex = 182;
@@ -390,7 +430,7 @@
             // 
             this.tbName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbName.Location = new System.Drawing.Point(274, 94);
+            this.tbName.Location = new System.Drawing.Point(244, 94);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(275, 30);
             this.tbName.TabIndex = 181;
@@ -401,7 +441,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(123, 98);
+            this.label4.Location = new System.Drawing.Point(93, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 180;
@@ -413,27 +453,55 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(123, 31);
+            this.label3.Location = new System.Drawing.Point(93, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 20);
             this.label3.TabIndex = 179;
             this.label3.Text = "CusId";
             // 
-            // cbStatus
+            // tbScheduleID
             // 
-            this.cbStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Location = new System.Drawing.Point(653, 162);
-            this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(129, 28);
-            this.cbStatus.TabIndex = 196;
+            this.tbScheduleID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbScheduleID.Location = new System.Drawing.Point(244, 141);
+            this.tbScheduleID.Name = "tbScheduleID";
+            this.tbScheduleID.Size = new System.Drawing.Size(275, 30);
+            this.tbScheduleID.TabIndex = 199;
+            // 
+            // tbBookingID
+            // 
+            this.tbBookingID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBookingID.Location = new System.Drawing.Point(244, 180);
+            this.tbBookingID.Name = "tbBookingID";
+            this.tbBookingID.Size = new System.Drawing.Size(275, 30);
+            this.tbBookingID.TabIndex = 200;
+            // 
+            // dtpFromdate
+            // 
+            this.dtpFromdate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpFromdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromdate.Location = new System.Drawing.Point(386, 141);
+            this.dtpFromdate.Name = "dtpFromdate";
+            this.dtpFromdate.Size = new System.Drawing.Size(275, 27);
+            this.dtpFromdate.TabIndex = 198;
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpToDate.Location = new System.Drawing.Point(386, 183);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(275, 27);
+            this.dtpToDate.TabIndex = 198;
             // 
             // SchedulesFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1222, 948);
+            this.Controls.Add(this.dtpToDate);
+            this.Controls.Add(this.dtpFromdate);
+            this.Controls.Add(this.tbBookingID);
+            this.Controls.Add(this.tbScheduleID);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAdd);
@@ -456,6 +524,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -473,22 +542,28 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cbCarId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cBCusId2;
         private System.Windows.Forms.TextBox tbTotalCost;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbFineCost;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpReturnDate;
-        private System.Windows.Forms.TextBox tbDateDelay;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.TextBox tbStatus;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.TextBox tbCarId;
+        private System.Windows.Forms.TextBox tbFineCost;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbDateDelay;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DateTimePicker dtpEndDate;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbScheduleID;
+        private System.Windows.Forms.TextBox tbBookingID;
+        private System.Windows.Forms.DateTimePicker dtpFromdate;
+        private System.Windows.Forms.DateTimePicker dtpToDate;
     }
 }
