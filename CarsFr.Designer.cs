@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,6 +59,10 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.cbSearch = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnSelectFilePath = new System.Windows.Forms.Button();
+            this.tbFilePath = new System.Windows.Forms.TextBox();
+            this.btnSelect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.carDGV)).BeginInit();
@@ -138,7 +142,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Red;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 723);
+            this.panel2.Location = new System.Drawing.Point(0, 784);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1256, 31);
             this.panel2.TabIndex = 43;
@@ -193,7 +197,7 @@
             this.btnBack.BackColor = System.Drawing.Color.Red;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(217, 630);
+            this.btnBack.Location = new System.Drawing.Point(0, 135);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(120, 48);
             this.btnBack.TabIndex = 54;
@@ -232,28 +236,28 @@
             // 
             // carDGV
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.carDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.carDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.carDGV.ColumnHeadersHeight = 29;
             this.carDGV.Location = new System.Drawing.Point(562, 249);
             this.carDGV.Name = "carDGV";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.carDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.carDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.carDGV.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Red;
-            this.carDGV.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Red;
+            this.carDGV.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.carDGV.RowTemplate.Height = 24;
             this.carDGV.Size = new System.Drawing.Size(670, 375);
             this.carDGV.TabIndex = 52;
@@ -382,7 +386,7 @@
             this.btnRefresh.BackColor = System.Drawing.Color.Red;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(819, 642);
+            this.btnRefresh.Location = new System.Drawing.Point(713, 639);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 36);
             this.btnRefresh.TabIndex = 67;
@@ -390,11 +394,62 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Red;
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(951, 639);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(120, 36);
+            this.btnExport.TabIndex = 68;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // btnSelectFilePath
+            // 
+            this.btnSelectFilePath.BackColor = System.Drawing.Color.Red;
+            this.btnSelectFilePath.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectFilePath.ForeColor = System.Drawing.Color.White;
+            this.btnSelectFilePath.Location = new System.Drawing.Point(1116, 718);
+            this.btnSelectFilePath.Name = "btnSelectFilePath";
+            this.btnSelectFilePath.Size = new System.Drawing.Size(116, 36);
+            this.btnSelectFilePath.TabIndex = 69;
+            this.btnSelectFilePath.Text = "Import";
+            this.btnSelectFilePath.UseVisualStyleBackColor = false;
+            this.btnSelectFilePath.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // tbFilePath
+            // 
+            this.tbFilePath.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFilePath.Location = new System.Drawing.Point(562, 685);
+            this.tbFilePath.Name = "tbFilePath";
+            this.tbFilePath.Size = new System.Drawing.Size(548, 30);
+            this.tbFilePath.TabIndex = 70;
+            // 
+            // btnSelect
+            // 
+            this.btnSelect.BackColor = System.Drawing.Color.Red;
+            this.btnSelect.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelect.ForeColor = System.Drawing.Color.White;
+            this.btnSelect.Location = new System.Drawing.Point(1116, 682);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(116, 36);
+            this.btnSelect.TabIndex = 71;
+            this.btnSelect.Text = "Choose";
+            this.btnSelect.UseVisualStyleBackColor = false;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
             // CarsFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 754);
+            this.ClientSize = new System.Drawing.Size(1256, 815);
+            this.Controls.Add(this.btnSelect);
+            this.Controls.Add(this.tbFilePath);
+            this.Controls.Add(this.btnSelectFilePath);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.cbSearch);
             this.Controls.Add(this.btnSearch);
@@ -462,5 +517,9 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbSearch;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnSelectFilePath;
+        private System.Windows.Forms.TextBox tbFilePath;
+        private System.Windows.Forms.Button btnSelect;
     }
 }

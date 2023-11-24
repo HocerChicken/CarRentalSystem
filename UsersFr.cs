@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CarRentalSystem
 {
@@ -17,10 +18,13 @@ namespace CarRentalSystem
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlCommandBuilder commandBuilder;
-
-        public UsersFr()
+        private MainFr mainFr;
+        private int role;
+        public UsersFr(MainFr mainFr, int role)
         {
             InitializeComponent();
+            this.mainFr = mainFr;
+            this.role = role;
         }
 
         private void lbExit_Click(object sender, EventArgs e)
@@ -210,15 +214,84 @@ namespace CarRentalSystem
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            switch (role)
+            {
+                case 0:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowAdminFeatures();
+                    break;
+                case 1:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowEmployeeFeatures();
+                    break;
+            }
         }
 
         private void User_Load(object sender, EventArgs e)
         {
             tbUserId.Hide();
             loadUser();
+        }
+
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)userDGV.DataSource;
+            Export(dt);
+        }
+
+        public void Export(DataTable tbl)
+        {
+            {
+                try
+                {
+                    if (tbl == null || tbl.Columns.Count == 0)
+                        throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                    var excelApp = new Excel.Application();
+                    var workbook = excelApp.Workbooks.Add();
+
+                    Excel._Worksheet workSheet = excelApp.ActiveSheet;
+
+                    for (var i = 0; i < tbl.Columns.Count; i++)
+                    {
+                        workSheet.Cells[1, i + 1] = tbl.Columns[i].ColumnName;
+                    }
+
+                    for (var i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        for (var j = 0; j < tbl.Columns.Count; j++)
+                        {
+                            workSheet.Cells[i + 2, j + 1] = tbl.Rows[i][j];
+                        }
+                    }
+
+                    try
+                    {
+                        var saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.FileName = "CarData";
+                        saveFileDialog.DefaultExt = ".xlsx";
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            workbook.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                        }
+                        excelApp.Quit();
+                        Console.WriteLine("Excel file saved!");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                        + ex.Message);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ExportToExcel: \n" + ex.Message);
+                }
+            }
         }
     }
 }

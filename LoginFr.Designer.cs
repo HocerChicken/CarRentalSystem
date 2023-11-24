@@ -141,6 +141,7 @@
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.Size = new System.Drawing.Size(275, 38);
             this.tbPassword.TabIndex = 6;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // label6
             // 
@@ -185,6 +186,7 @@
             this.btnLogin.TabIndex = 10;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lbClear
             // 
@@ -196,6 +198,7 @@
             this.lbClear.Size = new System.Drawing.Size(73, 33);
             this.lbClear.TabIndex = 11;
             this.lbClear.Text = "Clear";
+            this.lbClear.Click += new System.EventHandler(this.lbClear_Click);
             // 
             // lbExit
             // 

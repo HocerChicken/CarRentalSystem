@@ -18,11 +18,15 @@ namespace CarRentalSystem
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlDataReader reader;
+        private MainFr mainFr;
+        private int role;
         private int totalCarCost = 0;
 
-        public SchedulesFr()
+        public SchedulesFr(MainFr mainFr, int role)
         {
             InitializeComponent();
+            this.mainFr = mainFr;
+            this.role = role;
         }
 
         private void ResetTextBox() {
@@ -165,8 +169,9 @@ namespace CarRentalSystem
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.Transaction = transaction;
-                        cmd.CommandText = "Update Bookings SET status = @status Where bookingId = @bookingId";
+                        cmd.CommandText = "Update Bookings SET status = @status,totalCost = @totalCost Where bookingId = @bookingId";
                         cmd.Parameters.AddWithValue("@bookingId", tbBookingID.Text);
+                        cmd.Parameters.AddWithValue("@totalCost", tbTotalCost.Text);
                         cmd.Parameters.AddWithValue("@status", "Paymented");
 
 
@@ -211,9 +216,19 @@ namespace CarRentalSystem
 
         private void btnBack_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            switch (role)
+            {
+                case 0:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowAdminFeatures();
+                    break;
+                case 1:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowEmployeeFeatures();
+                    break;
+            }
         }
 
         private void btnCheck_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.schedulesDGV = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
@@ -98,6 +99,8 @@
             this.schedulesDGV.Location = new System.Drawing.Point(800, 228);
             this.schedulesDGV.Name = "schedulesDGV";
             this.schedulesDGV.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            this.schedulesDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.schedulesDGV.RowTemplate.Height = 24;
             this.schedulesDGV.Size = new System.Drawing.Size(369, 339);
             this.schedulesDGV.TabIndex = 57;
@@ -194,19 +197,18 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Snap ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(572, 75);
+            this.label5.Location = new System.Drawing.Point(558, 75);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(222, 30);
+            this.label5.Size = new System.Drawing.Size(236, 30);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Manage Booking";
+            this.label5.Text = "Manage Schedule";
             // 
             // btnBack
             // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBack.BackColor = System.Drawing.Color.Red;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(1033, 833);
+            this.btnBack.Location = new System.Drawing.Point(0, 135);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(120, 48);
             this.btnBack.TabIndex = 172;
@@ -220,7 +222,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.Red;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(791, 833);
+            this.btnAdd.Location = new System.Drawing.Point(949, 834);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(220, 48);
             this.btnAdd.TabIndex = 171;

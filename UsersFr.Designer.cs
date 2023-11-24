@@ -48,6 +48,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbRole = new System.Windows.Forms.TextBox();
             this.tbUserId = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDGV)).BeginInit();
@@ -206,7 +207,7 @@
             this.btnBack.BackColor = System.Drawing.Color.Red;
             this.btnBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Location = new System.Drawing.Point(228, 585);
+            this.btnBack.Location = new System.Drawing.Point(0, 148);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(120, 48);
             this.btnBack.TabIndex = 27;
@@ -267,11 +268,25 @@
             this.tbUserId.Size = new System.Drawing.Size(275, 30);
             this.tbUserId.TabIndex = 32;
             // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Red;
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(822, 597);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(120, 48);
+            this.btnExport.TabIndex = 33;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // UsersFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 708);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.tbUserId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbRole);
@@ -323,5 +338,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbRole;
         private System.Windows.Forms.TextBox tbUserId;
+        private System.Windows.Forms.Button btnExport;
     }
 }

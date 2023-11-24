@@ -33,8 +33,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ExcelDataReader, Version=3.6.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelDataReader.3.6.0\lib\net45\ExcelDataReader.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,11 +72,11 @@
     <Compile Include="CustomersFr.Designer.cs">
       <DependentUpon>CustomersFr.cs</DependentUpon>
     </Compile>
-    <Compile Include="DashBoard.cs">
+    <Compile Include="DashBoardFr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DashBoard.Designer.cs">
-      <DependentUpon>DashBoard.cs</DependentUpon>
+    <Compile Include="DashBoardFr.Designer.cs">
+      <DependentUpon>DashBoardFr.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginFr.cs">
       <SubType>Form</SubType>
@@ -71,11 +84,11 @@
     <Compile Include="LoginFr.Designer.cs">
       <DependentUpon>LoginFr.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainFr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainFr.Designer.cs">
+      <DependentUpon>MainFr.cs</DependentUpon>
     </Compile>
     <Compile Include="BookingsFr.cs">
       <SubType>Form</SubType>
@@ -110,14 +123,14 @@
     <EmbeddedResource Include="CustomersFr.resx">
       <DependentUpon>CustomersFr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DashBoard.resx">
-      <DependentUpon>DashBoard.cs</DependentUpon>
+    <EmbeddedResource Include="DashBoardFr.resx">
+      <DependentUpon>DashBoardFr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginFr.resx">
       <DependentUpon>LoginFr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainFr.resx">
+      <DependentUpon>MainFr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,6 +154,7 @@
     <EmbeddedResource Include="UsersFr.resx">
       <DependentUpon>UsersFr.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -162,8 +176,6 @@
     <Content Include="CarImages\AUDI_SPORT_2cho.png" />
     <None Include="Resources\AUDI_2cho.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Im_ex_ExcelFactoryMethod\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

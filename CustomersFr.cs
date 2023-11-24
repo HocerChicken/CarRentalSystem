@@ -17,10 +17,15 @@ namespace CarRentalSystem
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlCommandBuilder commandBuilder;
+        private MainFr mainFr;
+        private int role;
 
-        public CustomersFr()   
+
+        public CustomersFr(MainFr mainFr, int role)
         {
             InitializeComponent();
+            this.mainFr = mainFr;
+            this.role   = role;
         }
 
         private void Customer_Load(object sender, EventArgs e)
@@ -196,9 +201,19 @@ namespace CarRentalSystem
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            switch (role)
+            {
+                case 0:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowAdminFeatures();
+                    break;
+                case 1:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowEmployeeFeatures();
+                    break;
+            }
         }
 
         private void lbClose_Click(object sender, EventArgs e)

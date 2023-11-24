@@ -24,12 +24,15 @@ namespace CarRentalSystem
         private int totalPriceFuelAndFeature = 0;
         private int totalPriceBetweenDate = 0;
         private int totalPrice = 0; // equal priceOFcarPerDate * Date rent (totalPriceBetweenDate) + totalPriceFuelAndFeature;
-
         private int priceOfCarPerDate = 0;
+        private MainFr mainFr;
+        private int role;
 
-        public BookingsFr()
+        public BookingsFr(MainFr main, int roleid)
         {
             InitializeComponent();
+            this.mainFr = main;
+            this.role = roleid;
         }
 
         private void resetTextBox()
@@ -243,9 +246,19 @@ namespace CarRentalSystem
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            switch (role)
+            {
+                case 0:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowAdminFeatures();
+                    break;
+                case 1:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowEmployeeFeatures();
+                    break;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

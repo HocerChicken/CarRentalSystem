@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ExcelDataReader;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace CarRentalSystem
 {
@@ -17,10 +15,15 @@ namespace CarRentalSystem
         string connectionString = "Data Source=HOCPAM;Initial Catalog=CarRentaDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
         private SqlDataAdapter adapter;
         private SqlCommandBuilder commandBuilder;
+        private MainFr mainFr;
+        private int role;
 
-        public CarsFr()
+        public CarsFr(MainFr mainFr, int roleId)
         {
             InitializeComponent();
+            this.mainFr = mainFr;
+            this.role = roleId;
+
         }
 
         private void resetTextBox()
@@ -208,9 +211,19 @@ namespace CarRentalSystem
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Hide(); 
-            MainForm mainForm = new MainForm();
-            mainForm.Show();
+            switch(role)
+            {
+                case 0:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowAdminFeatures();
+                    break;
+                case 1:
+                    this.Hide();
+                    mainFr.Show();
+                    mainFr.ShowEmployeeFeatures();
+                    break;
+            }
         }
 
         private void cusDGV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -278,6 +291,142 @@ namespace CarRentalSystem
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable) carDGV.DataSource;
+            Export(dt);
+        }
+        public void Export(DataTable tbl)
+        {
+            {
+                try
+                {
+                    if (tbl == null || tbl.Columns.Count == 0)
+                        throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                    var excelApp = new Excel.Application();
+                    var workbook = excelApp.Workbooks.Add();
+
+                    Excel._Worksheet workSheet = excelApp.ActiveSheet;
+
+                    for (var i = 0; i < tbl.Columns.Count; i++)
+                    {
+                        workSheet.Cells[1, i + 1] = tbl.Columns[i].ColumnName;
+                    }
+
+                    for (var i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        for (var j = 0; j < tbl.Columns.Count; j++)
+                        {
+                            workSheet.Cells[i + 2, j + 1] = tbl.Rows[i][j];
+                        }
+                    }
+
+                    try
+                    {
+                        var saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.FileName = "CarData";
+                        saveFileDialog.DefaultExt = ".xlsx";
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            workbook.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                        }
+                        excelApp.Quit();
+                        Console.WriteLine("Excel file saved!");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                        + ex.Message);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ExportToExcel: \n" + ex.Message);
+                }
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            string excelFilePath = tbFilePath.Text; // Use the selected file path from the textbox
+
+            if (string.IsNullOrWhiteSpace(excelFilePath))
+            {
+                MessageBox.Show("Please select an Excel file first.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    using (var reader = ExcelReaderFactory.CreateReader(stream))
+                    {
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                string brand = reader.GetString(0);
+                                string model = reader.GetString(1);
+                                string category = reader.GetString(2);
+                                string available = reader.GetString(3);
+                                int price = 0; 
+                                if (reader.GetValue(4) != null && int.TryParse(reader.GetValue(4).ToString(), out int parsedPrice))
+                                {
+                                    price = parsedPrice;
+                                }
+
+                                using (SqlConnection connection = new SqlConnection(@connectionString))
+                                {
+                                    connection.Open();
+
+                                    string query = "INSERT INTO Cars (brand, model, category, available, price) " +
+                                                   "VALUES (@brand, @model, @category, @available, @price)";
+
+                                    using (SqlCommand command = new SqlCommand(query, connection))
+                                    {
+                                        command.Parameters.AddWithValue("@brand", brand);
+                                        command.Parameters.AddWithValue("@model", model);
+                                        command.Parameters.AddWithValue("@category", category);
+                                        command.Parameters.AddWithValue("@available", available);
+                                        command.Parameters.AddWithValue("@price", price);
+
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                        } while (reader.NextResult());
+                    }
+                }
+
+                MessageBox.Show("Data imported successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel Files|*.xls;*.xlsx"; 
+                openFileDialog.Title = "Select an Excel File";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    tbFilePath.Text = selectedFilePath;
+                }
             }
         }
     }

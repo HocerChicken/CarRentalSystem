@@ -5,11 +5,13 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CarRentalSystem.Utils
 {
     public static class Utils
     {
+
         public static bool IsCarAvailableForBooking(string connectionString, DateTime fromDate, DateTime toDate, string carId)
         {
             using (SqlConnection connection = new SqlConnection(@connectionString))
