@@ -28,32 +28,37 @@ namespace CarRentalSystem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (tbPassword.Text.Length < 6 || String.IsNullOrEmpty(tbUsername.Text))
             {
-                connection.Open();
-
-                string query = "SELECT userId, role FROM Users WHERE username = @username AND userpassword = @password";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
+                MessageBox.Show("Username or passwrod invalid");
+            }
+            else { 
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    command.Parameters.AddWithValue("@username", tbUsername.Text);
-                    command.Parameters.AddWithValue("@password", tbPassword.Text);
+                    connection.Open();
+                    string query = "SELECT userId, role FROM Users WHERE username = @username AND userpassword = @password";
 
-                    SqlDataReader reader = command.ExecuteReader();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@username", tbUsername.Text);
+                        command.Parameters.AddWithValue("@password", tbPassword.Text);
 
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        int userId = reader.GetInt32(0);
-                        int role = reader.GetInt32(1);
-                        this.Hide();
-                        MainFr mainForm = new MainFr(userId, role);
-                        mainForm.Show();
-                    }
-                    else
-                    {
-                        // Failed login
-                        MessageBox.Show("Invalid username or password.");
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            reader.Read();
+                            int userId = reader.GetInt32(0);
+                            int role = reader.GetInt32(1);
+                            this.Hide();
+                            MainFr mainForm = new MainFr(userId, role);
+                            mainForm.Show();
+                        }
+                        else
+                        {
+                            // Failed login
+                            MessageBox.Show("Invalid username or password.");
+                        }
                     }
                 }
             }
