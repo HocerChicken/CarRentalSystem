@@ -489,16 +489,23 @@ namespace CarRentalSystem
 
         private void bookingDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            try
             {
-                DataGridViewCell cell = bookingDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewCell cell = bookingDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                cell.Style.SelectionBackColor = Color.Red;
-            }
-            if (e.RowIndex >= 0)
+                    cell.Style.SelectionBackColor = Color.Red;
+                }
+                if (e.RowIndex >= 0)
+                {
+                    DisplayBookingDetails(Convert.ToInt32(bookingDGV.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                }
+            } catch (Exception ex)
             {
-                DisplayBookingDetails(Convert.ToInt32(bookingDGV.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                MessageBox.Show("Pleae selected agains");
             }
+        
         }
 
         private void dtpFromDate_ValueChanged(object sender, EventArgs e)

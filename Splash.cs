@@ -22,7 +22,7 @@ namespace CarRentalSystem
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            startPoint += 4;
+            startPoint += 5;
             progressBar.Value = startPoint;
             lbPercentage.Text = startPoint.ToString();
 

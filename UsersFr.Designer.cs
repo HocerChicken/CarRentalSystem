@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lbExit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -48,7 +49,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbRole = new System.Windows.Forms.TextBox();
             this.tbUserId = new System.Windows.Forms.TextBox();
-            this.btnExport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDGV)).BeginInit();
@@ -184,6 +184,8 @@
             this.userDGV.Location = new System.Drawing.Point(585, 242);
             this.userDGV.Name = "userDGV";
             this.userDGV.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            this.userDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.userDGV.RowTemplate.Height = 24;
             this.userDGV.Size = new System.Drawing.Size(588, 338);
             this.userDGV.TabIndex = 25;
@@ -268,25 +270,11 @@
             this.tbUserId.Size = new System.Drawing.Size(275, 30);
             this.tbUserId.TabIndex = 32;
             // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.Red;
-            this.btnExport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExport.ForeColor = System.Drawing.Color.White;
-            this.btnExport.Location = new System.Drawing.Point(822, 597);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(120, 48);
-            this.btnExport.TabIndex = 33;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
             // UsersFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 708);
-            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.tbUserId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbRole);
@@ -338,6 +326,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbRole;
         private System.Windows.Forms.TextBox tbUserId;
-        private System.Windows.Forms.Button btnExport;
     }
 }

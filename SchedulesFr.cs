@@ -111,21 +111,27 @@ namespace CarRentalSystem
 
         private void bookingDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            try
             {
-                DataGridViewCell cell = schedulesDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewCell cell = schedulesDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                cell.Style.SelectionBackColor = Color.Red;
+                    cell.Style.SelectionBackColor = Color.Red;
+                }
+                if (e.RowIndex >= 0)
+                {
+                    dtpFromdate.Value = Convert.ToDateTime(schedulesDGV.Rows[e.RowIndex].Cells[0].Value);
+                    dtpToDate.Value = Convert.ToDateTime(schedulesDGV.Rows[e.RowIndex].Cells[1].Value);
+                    dtpEndDate.Text = schedulesDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    totalCarCost = Convert.ToInt32(schedulesDGV.Rows[e.RowIndex].Cells[6].Value.ToString());
+                    tbBookingID.Text = schedulesDGV.Rows[e.RowIndex].Cells[7].Value.ToString();
+                    tbScheduleID.Text = schedulesDGV.Rows[e.RowIndex].Cells[8].Value.ToString();
+                }
+            } catch {
+                MessageBox.Show("Please selected again");
             }
-            if (e.RowIndex >= 0)
-            {
-                dtpFromdate.Value = Convert.ToDateTime(schedulesDGV.Rows[e.RowIndex].Cells[0].Value);
-                dtpToDate.Value = Convert.ToDateTime(schedulesDGV.Rows[e.RowIndex].Cells[1].Value);
-                dtpEndDate.Text = schedulesDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
-                totalCarCost = Convert.ToInt32(schedulesDGV.Rows[e.RowIndex].Cells[6].Value.ToString());
-                tbBookingID.Text = schedulesDGV.Rows[e.RowIndex].Cells[7].Value.ToString();
-                tbScheduleID.Text = schedulesDGV.Rows[e.RowIndex].Cells[8].Value.ToString();
-            }
+       
         }
 
         private void lbExit_Click_1(object sender, EventArgs e)
@@ -135,6 +141,9 @@ namespace CarRentalSystem
 
         private void SchedulesFr_Load(object sender, EventArgs e)
         {
+            tbDateDelay.ReadOnly = true;
+            tbTotalCost.ReadOnly = true;
+            tbFineCost.ReadOnly = true;
             cBCusId2.SelectedValueChanged -= cBCusId_SelectedValueChanged;
             tbScheduleID.Hide();
             tbBookingID.Hide();

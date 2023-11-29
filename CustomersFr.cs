@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CarRentalSystem
 {
@@ -45,7 +46,7 @@ namespace CarRentalSystem
         {
             try
             {
-                string query = "SELECT * FROM Customers";
+                string query = "SELECT cusId as 'Customer ID', cusName as 'Customer Name', cusAdd as 'Customer Add', phone as 'Phone' FROM Customers";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -223,18 +224,23 @@ namespace CarRentalSystem
 
         private void cusDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            try
             {
-                DataGridViewCell cell = cusDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewCell cell = cusDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                cell.Style.SelectionBackColor = Color.Red;
-            }
-            if (e.RowIndex >= 0)
-            {
-                tbCusId.Text = cusDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
-                tbCusName.Text = cusDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
-                tbCusAdd.Text = cusDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
-                tbPhone.Text = cusDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    cell.Style.SelectionBackColor = Color.Red;
+                }
+                if (e.RowIndex >= 0)
+                {
+                    tbCusId.Text = cusDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    tbCusName.Text = cusDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    tbCusAdd.Text = cusDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    tbPhone.Text = cusDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
+                }
+            } catch {
+                MessageBox.Show("please selected again");
             }
         }
 
@@ -286,6 +292,64 @@ namespace CarRentalSystem
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             loadCustomer();
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)cusDGV.DataSource;
+            Export(dt);
+        }
+
+        public void Export(DataTable tbl)
+        {
+            {
+                try
+                {
+                    if (tbl == null || tbl.Columns.Count == 0)
+                        throw new Exception("ExportToExcel: Null or empty input table!\n");
+
+                    var excelApp = new Excel.Application();
+                    var workbook = excelApp.Workbooks.Add();
+
+                    Excel._Worksheet workSheet = excelApp.ActiveSheet;
+
+                    for (var i = 0; i < tbl.Columns.Count; i++)
+                    {
+                        workSheet.Cells[1, i + 1] = tbl.Columns[i].ColumnName;
+                    }
+
+                    for (var i = 0; i < tbl.Rows.Count; i++)
+                    {
+                        for (var j = 0; j < tbl.Columns.Count; j++)
+                        {
+                            workSheet.Cells[i + 2, j + 1] = tbl.Rows[i][j];
+                        }
+                    }
+
+                    try
+                    {
+                        var saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.FileName = "CustomersData";
+                        saveFileDialog.DefaultExt = ".xlsx";
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            workbook.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                        }
+                        excelApp.Quit();
+                        Console.WriteLine("Excel file saved!");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("ExportToExcel: Excel file could not be saved! Check filepath.\n"
+                        + ex.Message);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("ExportToExcel: \n" + ex.Message);
+                }
+            }
         }
     }
 }

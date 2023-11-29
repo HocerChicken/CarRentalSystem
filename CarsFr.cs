@@ -39,7 +39,7 @@ namespace CarRentalSystem
         {
             try
             {
-                string query = "SELECT * FROM Cars";
+                string query = "SELECT carId as 'Car ID', brand as 'Brand', model as 'Model', category as 'Category', available as 'Available', price as 'Price' FROM Cars";
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
@@ -228,20 +228,27 @@ namespace CarRentalSystem
 
         private void cusDGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            try
             {
-                DataGridViewCell cell = carDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    DataGridViewCell cell = carDGV.Rows[e.RowIndex].Cells[e.ColumnIndex];
 
-                cell.Style.SelectionBackColor = Color.Red;
+                    cell.Style.SelectionBackColor = Color.Red;
+                }
+                if (e.RowIndex >= 0)
+                {
+                    tbCarid.Text = carDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    tbBrand.Text = carDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    tbModel.Text = carDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    tbType.Text = carDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    cbAvailable.Text = carDGV.Rows[e.RowIndex].Cells[4].Value.ToString();
+                    tbPrice.Text = carDGV.Rows[e.RowIndex].Cells[5].Value.ToString();
+                }
             }
-            if (e.RowIndex >= 0)
+            catch (Exception ex)
             {
-                tbCarid.Text = carDGV.Rows[e.RowIndex].Cells[0].Value.ToString();
-                tbBrand.Text = carDGV.Rows[e.RowIndex].Cells[1].Value.ToString();
-                tbModel.Text = carDGV.Rows[e.RowIndex].Cells[2].Value.ToString();
-                tbType.Text = carDGV.Rows[e.RowIndex].Cells[3].Value.ToString();
-                cbAvailable.Text = carDGV.Rows[e.RowIndex].Cells[4].Value.ToString();
-                tbPrice.Text = carDGV.Rows[e.RowIndex].Cells[5].Value.ToString();
+                MessageBox.Show("Pleae selected agains");
             }
         }
 

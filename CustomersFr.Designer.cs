@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cusDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -125,6 +127,8 @@
             this.cusDGV.Location = new System.Drawing.Point(586, 276);
             this.cusDGV.Name = "cusDGV";
             this.cusDGV.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Red;
+            this.cusDGV.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.cusDGV.RowTemplate.Height = 24;
             this.cusDGV.Size = new System.Drawing.Size(604, 338);
             this.cusDGV.TabIndex = 37;
@@ -135,16 +139,16 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(95, 419);
+            this.label3.Location = new System.Drawing.Point(55, 418);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 20);
+            this.label3.Size = new System.Drawing.Size(141, 20);
             this.label3.TabIndex = 36;
-            this.label3.Text = "CusAdd";
+            this.label3.Text = "Customer Add";
             // 
             // tbCusAdd
             // 
             this.tbCusAdd.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCusAdd.Location = new System.Drawing.Point(213, 414);
+            this.tbCusAdd.Location = new System.Drawing.Point(242, 414);
             this.tbCusAdd.Name = "tbCusAdd";
             this.tbCusAdd.Size = new System.Drawing.Size(275, 30);
             this.tbCusAdd.TabIndex = 35;
@@ -165,16 +169,16 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(95, 346);
+            this.label8.Location = new System.Drawing.Point(55, 345);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 20);
+            this.label8.Size = new System.Drawing.Size(152, 20);
             this.label8.TabIndex = 33;
-            this.label8.Text = "CusName";
+            this.label8.Text = "Customer Name";
             // 
             // tbCusName
             // 
             this.tbCusName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCusName.Location = new System.Drawing.Point(213, 341);
+            this.tbCusName.Location = new System.Drawing.Point(242, 341);
             this.tbCusName.Name = "tbCusName";
             this.tbCusName.Size = new System.Drawing.Size(275, 30);
             this.tbCusName.TabIndex = 31;
@@ -182,7 +186,7 @@
             // tbCusId
             // 
             this.tbCusId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCusId.Location = new System.Drawing.Point(213, 277);
+            this.tbCusId.Location = new System.Drawing.Point(242, 277);
             this.tbCusId.Name = "tbCusId";
             this.tbCusId.Size = new System.Drawing.Size(275, 30);
             this.tbCusId.TabIndex = 30;
@@ -199,7 +203,7 @@
             // tbPhone
             // 
             this.tbPhone.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPhone.Location = new System.Drawing.Point(213, 484);
+            this.tbPhone.Location = new System.Drawing.Point(242, 484);
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(275, 30);
             this.tbPhone.TabIndex = 43;
@@ -209,7 +213,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(95, 489);
+            this.label4.Location = new System.Drawing.Point(55, 488);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 44;
@@ -323,7 +327,7 @@
             this.btnRefresh.BackColor = System.Drawing.Color.Red;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Location = new System.Drawing.Point(843, 631);
+            this.btnRefresh.Location = new System.Drawing.Point(763, 631);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 36);
             this.btnRefresh.TabIndex = 70;
@@ -336,17 +340,31 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(95, 287);
+            this.label6.Location = new System.Drawing.Point(55, 281);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 20);
+            this.label6.Size = new System.Drawing.Size(130, 20);
             this.label6.TabIndex = 71;
-            this.label6.Text = "CusId";
+            this.label6.Text = "Customer ID";
+            // 
+            // btnExport
+            // 
+            this.btnExport.BackColor = System.Drawing.Color.Red;
+            this.btnExport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExport.ForeColor = System.Drawing.Color.White;
+            this.btnExport.Location = new System.Drawing.Point(900, 631);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(120, 36);
+            this.btnExport.TabIndex = 72;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = false;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // CustomersFr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 770);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.cbSearch);
@@ -407,5 +425,6 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnExport;
     }
 }
